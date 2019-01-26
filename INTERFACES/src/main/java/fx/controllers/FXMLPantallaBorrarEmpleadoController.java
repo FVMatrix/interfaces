@@ -49,6 +49,8 @@ public class FXMLPantallaBorrarEmpleadoController implements Initializable {
 //        ServiciosEmpleado se = new ServiciosEmpleado();
 //        List<Empleado> empleados;
 //        empleados = se.cargarTodosLosEmpleados();
+        fxTableView.getColumns().clear();
+        fxTableView.getItems().clear();
         TableColumn dni = new TableColumn("DNI");
         TableColumn nombre = new TableColumn("Nombre");
         TableColumn apellidos = new TableColumn("Apellidos");

@@ -42,7 +42,8 @@ public class FXMLPantallaBorrarArticuloController implements Initializable {
 //        ServiciosArticulos sa = new ServiciosArticulos();
 //        List<Articulo> art;
 //        art = sa.cargarTodosLosArticulos();
-
+        fxTableView.getColumns().clear();
+        fxTableView.getItems().clear();
         TableColumn nombre = new TableColumn("Nombre");
         TableColumn categoria = new TableColumn("Categoria");
         TableColumn responsable = new TableColumn("Responsable");

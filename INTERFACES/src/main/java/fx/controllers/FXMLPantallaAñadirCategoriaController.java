@@ -61,7 +61,8 @@ public class FXMLPantallaAñadirCategoriaController implements Initializable {
     }
 
     public void cargarTablaBorrar() {
-
+        fxTablaBorrar.getColumns().clear();
+        fxTablaBorrar.getItems().clear();
         TableColumn nombre = new TableColumn("Nombre");
         TableColumn descripcion = new TableColumn("Descripcion");
         nombre.setPrefWidth(210);
