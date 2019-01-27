@@ -15,9 +15,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import model.Articulo;
 import model.Empleado;
-import servicios.ServiciosArticulos;
 import servicios.ServiciosEmpleado;
 
 /**
@@ -46,9 +44,6 @@ public class FXMLPantallaBorrarEmpleadoController implements Initializable {
 
     @FXML
     public void cargarTabla() {
-//        ServiciosEmpleado se = new ServiciosEmpleado();
-//        List<Empleado> empleados;
-//        empleados = se.cargarTodosLosEmpleados();
         fxTableView.getColumns().clear();
         fxTableView.getItems().clear();
         TableColumn dni = new TableColumn("DNI");
@@ -69,10 +64,7 @@ public class FXMLPantallaBorrarEmpleadoController implements Initializable {
         ubicacion.setCellValueFactory(new PropertyValueFactory("ubicacion"));
         telefono.setCellValueFactory(new PropertyValueFactory("telefono"));
         Empleado e = (Empleado) fxComboBox.getSelectionModel().getSelectedItem();
-        fxTableView.getItems().add(e);
-//        for (int i = 0; i < empleados.size(); i++) {
-//            fxTableView.getItems().addAll(empleados.get(i));
-//        }
+        fxTableView.getItems().add(e);  
     }
 
     @FXML
@@ -87,8 +79,11 @@ public class FXMLPantallaBorrarEmpleadoController implements Initializable {
             if (num > 0) {
                 alert.setContentText("Se ha borrado correctamente");
                 alert.showAndWait();
+                fxComboBox.getItems().remove(e);
             } else {
-                //COMPLETAR
+                alert.setAlertType(Alert.AlertType.ERROR);
+                alert.setContentText("Ha ocurrido un error");
+                alert.showAndWait();
             }
 
         } else {

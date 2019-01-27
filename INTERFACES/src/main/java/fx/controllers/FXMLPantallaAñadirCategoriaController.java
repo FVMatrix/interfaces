@@ -54,27 +54,40 @@ public class FXMLPantallaAñadirCategoriaController implements Initializable {
         ServiciosCategoria sc = new ServiciosCategoria();
         fxCategoria.getItems().clear();
         fxCategoria2.getItems().clear();
+        fxNombreNuevo.clear();
+        fxDescripcionNuevo.clear();
+        fxNombre.clear();
+        fxDescripcion.clear();
         ArrayList<Categoria> categorias = (ArrayList<Categoria>) sc.cargarTodosLasCategorias();
         fxCategoria.getItems().addAll(categorias);
         fxCategoria2.getItems().addAll(categorias);
 
     }
 
+    public void cargarActualizar() {
+        Categoria pulsada = (Categoria) fxCategoria.getSelectionModel().getSelectedItem();
+        if (pulsada != null) {
+            fxNombreNuevo.setText(pulsada.getNombre());
+            fxDescripcionNuevo.setText(pulsada.getDescripcion());
+        }
+    }
+
     public void cargarTablaBorrar() {
-        fxTablaBorrar.getColumns().clear();
         fxTablaBorrar.getItems().clear();
+
         TableColumn nombre = new TableColumn("Nombre");
         TableColumn descripcion = new TableColumn("Descripcion");
         nombre.setPrefWidth(210);
         descripcion.setPrefWidth(210);
 
         fxTablaBorrar.getColumns().addAll(nombre, descripcion);
-        nombre.setCellValueFactory(new PropertyValueFactory("nombre"));
-        descripcion.setCellValueFactory(new PropertyValueFactory("descripcion"));
+        nombre.setCellValueFactory(new PropertyValueFactory("Nombre"));
+        descripcion.setCellValueFactory(new PropertyValueFactory("Descripcion"));
         Categoria c = (Categoria) fxCategoria2.getSelectionModel().getSelectedItem();
         fxTablaBorrar.getItems().add(c);
     }
 
+    @FXML
     public void añadirCategoria() {
 
         if (fxNombre.getText().equals("") || fxDescripcion.getText().equals("")) {
@@ -83,62 +96,78 @@ public class FXMLPantallaAñadirCategoriaController implements Initializable {
         } else {
             Categoria c = new Categoria(0, fxNombre.getText(), fxDescripcion.getText());
             ServiciosCategoria sc = new ServiciosCategoria();
-//            if ("añadir la pinche categoria hijo de la chingada wey") {
-//                Alert a = new Alert(Alert.AlertType.INFORMATION, "Categoria creada", ButtonType.CLOSE);
-//                a.showAndWait();
-//                fxNombre.clear();
-//                fxDescripcion.clear();
-//               
-//            } else {
-//                alertError.setContentText("Ha ocurrido un error");
-//                alertError.showAndWait();
-//            }
+            int filas = sc.añadirCategoria(c);
+            if (filas > 0) {
+                Alert a = new Alert(Alert.AlertType.INFORMATION, "Categoria creada", ButtonType.CLOSE);
+                a.showAndWait();
+                fxTablaBorrar.getItems().clear();
+                fxCategoria.getItems().add(c);
+                fxCategoria2.getItems().add(c);
+
+            } else {
+                alertError.setContentText("Ha ocurrido un error");
+                alertError.showAndWait();
+            }
 
         }
     }
 
+    @FXML
     public void actualizarCategoria() {
         ServiciosCategoria sc = new ServiciosCategoria();
         if (fxNombreNuevo.getText().equals("") || fxDescripcionNuevo.getText().equals("")) {
             alertError.setContentText("Introduzca todos los datos");
             alertError.showAndWait();
         } else {
-            Categoria c = new Categoria(0, fxNombreNuevo.getText(), fxDescripcionNuevo.getText());
+            Categoria c = (Categoria) fxCategoria.getSelectionModel().getSelectedItem();
+            c.setNombre(fxNombreNuevo.getText());
+            c.setDescripcion(fxDescripcionNuevo.getText());
+            int filas = sc.modificarCategoria(c);
 
-//            if ("Pues actualiza la pinche categoria otaco culiao") {
-//                Alert aa = new Alert(Alert.AlertType.INFORMATION, "Categoria actualizada", ButtonType.CLOSE);
-//                aa.showAndWait();
-//                fxNombreNuevo.clear();
-//                fxDescripcionNuevo.clear();
-//                
-//            } else {
-//                alertError.setContentText("Ha ocurrido un error");
-//                alertError.showAndWait();
-//            }
+            if (filas > 0) {
+                Alert aa = new Alert(Alert.AlertType.INFORMATION, "Categoria actualizada", ButtonType.CLOSE);
+                aa.showAndWait();
+                fxNombreNuevo.clear();
+                fxDescripcionNuevo.clear();
+                fxCategoria2.getItems().remove(c);
+                fxCategoria.getItems().remove(c);
+                fxCategoria2.getItems().add(c);
+                fxCategoria.getItems().add(c);
+
+            } else {
+                alertError.setContentText("Ha ocurrido un error");
+                alertError.showAndWait();
+            }
         }
     }
 
+    @FXML
     public void borrarCategoria() {
-        //PREGUNTAR pa que coño es el segundo combobox que no lo enchiendo pinche furro 
 
-//        if (fxNombre.getText().equals("") || fxDescripcion.getText().equals("")) {
-//            alertError.setContentText("Introduzca todos los datos");
-//            alertError.showAndWait();
-//        } else {
-//            Categoria c = new Categoria(0, fxNombre.getText(), fxDescripcion.getText());
-//            ServiciosCategoria sc = new ServiciosCategoria();
-////            if ("añadir la pinche categoria hijo de la chingada wey") {
-////                Alert a = new Alert(Alert.AlertType.INFORMATION, "Categoria creada", ButtonType.CLOSE);
-////                a.showAndWait();
-////                fxNombre.clear();
-////                fxDescripcion.clear();
-////               
-////            } else {
-////                alertError.setContentText("Ha ocurrido un error");
-////                alertError.showAndWait();
-////            }
-//
-//        }
+        ServiciosCategoria sc = new ServiciosCategoria();
+        if (fxCategoria2.getSelectionModel().getSelectedItem() == null) {
+            alertError.setContentText("Seleccione una categoria");
+            alertError.showAndWait();
+        } else {
+            Categoria c = (Categoria) fxCategoria2.getSelectionModel().getSelectedItem();
+            int filas = sc.borrarCategoria(c);
+
+            if (filas > 0) {
+                Alert aa = new Alert(Alert.AlertType.INFORMATION, "Categoria actualizada", ButtonType.CLOSE);
+                aa.showAndWait();
+                fxNombreNuevo.clear();
+                fxDescripcionNuevo.clear();
+                fxCategoria2.getItems().remove(c);
+                fxCategoria.getItems().remove(c);
+
+            } else if (filas == -2) {
+                alertError.setContentText("No se puede borrar esta categoria");
+                alertError.showAndWait();
+            } else {
+                alertError.setContentText("Ha ocurrido un error");
+                alertError.showAndWait();
+            }
+        }
     }
 
     @Override

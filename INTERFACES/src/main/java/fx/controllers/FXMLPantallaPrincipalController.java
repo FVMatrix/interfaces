@@ -190,6 +190,8 @@ public class FXMLPantallaPrincipalController implements Initializable {
 
     @FXML
     public void cargarPantallaActualizarEmpleado() {
+        controllerActualizarEmpleado.cargar();
+        controllerActualizarEmpleado.cargarComboBoxUbicacion();
         fxRoot.setCenter(pantallaActualizarEmpleado);
     }
 
@@ -208,11 +210,13 @@ public class FXMLPantallaPrincipalController implements Initializable {
 
     @FXML
     public void cargarPantallaAñadirEmpleado() {
+        controllerAñadirEmpleado.cargarComboBoxUbicacion();
         fxRoot.setCenter(pantallaAñadirEmpleado);
     }
 
     @FXML
     public void cargarPantallaAñadirCategoria() {
+        controllerAñadirCategoria.cargar();
         fxRoot.setCenter(pantallaAñadirCategoria);
     }
 

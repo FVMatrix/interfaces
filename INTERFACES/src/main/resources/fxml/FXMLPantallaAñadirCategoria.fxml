@@ -16,9 +16,9 @@
       <Label layoutX="320.0" layoutY="120.0" text="DESCRIPCION" />
       <ComboBox fx:id="fxCategoria2" layoutX="61.0" layoutY="452.0" prefHeight="31.0" prefWidth="196.0" promptText="Seleccione categoría" />
       <ComboBox fx:id="fxCategoria" layoutX="61.0" layoutY="269.0" prefHeight="31.0" prefWidth="196.0" promptText="Seleccione categoría" />
-      <Button layoutX="793.0" layoutY="115.0" mnemonicParsing="false" text="AÑADIR" />
-      <Button layoutX="777.0" layoutY="276.0" mnemonicParsing="false" text="ACTUALIZAR" />
-      <Button layoutX="792.0" layoutY="468.0" mnemonicParsing="false" text="BORRAR" />
+      <Button layoutX="793.0" layoutY="115.0" mnemonicParsing="false" onAction="#añadirCategoria" text="AÑADIR" />
+      <Button layoutX="777.0" layoutY="276.0" mnemonicParsing="false" onAction="#actualizarCategoria" text="ACTUALIZAR" />
+      <Button layoutX="792.0" layoutY="468.0" mnemonicParsing="false" onAction="#borrarCategoria" text="BORRAR" />
       <Label layoutX="35.0" layoutY="120.0" text="NOMBRE" />
       <TextField fx:id="fxNombre" layoutX="109.0" layoutY="115.0" />
       <TextArea fx:id="fxDescripcion" layoutX="426.0" layoutY="83.0" prefHeight="96.0" prefWidth="253.0" />
