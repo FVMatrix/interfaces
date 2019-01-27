@@ -13,7 +13,9 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
@@ -26,8 +28,46 @@ public class FXMLPantallaPrincipalController implements Initializable {
 
     @FXML
     private BorderPane fxRoot;
+
+    private int tipo_usuario;
+    private String nombreEmpleado;
+
+    public int getTipo_usuario() {
+        return tipo_usuario;
+    }
+
+    public void setTipo_usuario(int tipo_usuario) {
+        this.tipo_usuario = tipo_usuario;
+    }
+
+    public String getNombreEmpleado() {
+        return nombreEmpleado;
+    }
+
+    public void setNombreEmpleado(String nombreEmpleado) {
+        this.nombreEmpleado = nombreEmpleado;
+    }
+
     @FXML
     private MenuBar fxMenuBar;
+
+    @FXML
+    private Menu fxMenuArticulos;
+
+    @FXML
+    private Menu fxMenuEmpleados;
+
+    @FXML
+    private Menu fxMenuCategorias;
+
+    @FXML
+    private Menu fxMenuGeneral;
+    
+    @FXML
+    private MenuItem fxMenuItemActualizarCategoria;
+    
+    @FXML
+    private MenuItem fxMenuItemBorrarCategoria;
 
     @FXML
     private AnchorPane pantallaActualizarArticulo;
@@ -59,6 +99,9 @@ public class FXMLPantallaPrincipalController implements Initializable {
 
     private AnchorPane pantallaLogin;
     private FXMLPantallaLoginController controllerLogin;
+
+    private AnchorPane pantallaBienvenida;
+    private FXMLPantallaBienvenidaController controllerBienvenida;
 
     // <editor-fold defaultstate="collapsed" desc="Precargas de Pantallas">  
     private void preCargaLogin() {
@@ -180,16 +223,28 @@ public class FXMLPantallaPrincipalController implements Initializable {
             Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    private void preCargaBienvenida() {
+        try {
+            FXMLLoader loaderMenu = new FXMLLoader(
+                    getClass().getResource("/fxml/FXMLPantallaBienvenida.fxml"));
+            pantallaBienvenida = loaderMenu.load();
+            controllerBienvenida = loaderMenu.getController();
+            controllerBienvenida.setInicio(this);
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 // </editor-fold>     
 
     // <editor-fold defaultstate="collapsed" desc="Cargas de Pantallas">  
     @FXML
     public void cargarPantallaActualizarArticulo() {
-        fxRoot.setCenter(pantallaActualizarArticulo);
         controllerActualizarArticulo.cargarComboArticulos();
         controllerActualizarArticulo.cargarComboResponsable();
         controllerActualizarArticulo.cargarComboCategoria();
         controllerActualizarArticulo.cargarComboUbicacion();
+        fxRoot.setCenter(pantallaActualizarArticulo);
     }
 
     @FXML
@@ -206,10 +261,10 @@ public class FXMLPantallaPrincipalController implements Initializable {
 
     @FXML
     public void cargarPantallaAñadirArticulo() {
-        fxRoot.setCenter(pantallaAñadirArticulo);
         controllerAñadirArticulo.cargarComboBoxCategoria();
         controllerAñadirArticulo.cargarComboBoxResponsable();
         controllerAñadirArticulo.cargarComboBoxUbicacion();
+        fxRoot.setCenter(pantallaAñadirArticulo);
     }
 
     @FXML
@@ -243,14 +298,41 @@ public class FXMLPantallaPrincipalController implements Initializable {
 
     @FXML
     public void cargarPantallaLogin() {
+        fxMenuArticulos.setVisible(true);
+        fxMenuCategorias.setVisible(true);
+        fxMenuEmpleados.setVisible(true);
+        fxMenuBar.setVisible(false);
         fxRoot.setCenter(pantallaLogin);
+    }
+
+    @FXML
+    public void cargarPantallaBienvenida() {
+        switch (tipo_usuario) {
+            case 1:
+                fxMenuArticulos.setVisible(false);
+                break;
+            case 2:
+                fxMenuCategorias.setVisible(false);
+                fxMenuEmpleados.setVisible(false);
+                break;
+            default:
+                throw new AssertionError();
+        }
+        fxMenuBar.setVisible(true);
+        controllerBienvenida.cambiarNombreBienvenida();
+        fxRoot.setCenter(pantallaBienvenida);
     }
 
     // </editor-fold>  
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //BORRAR PANTALLAS DE ACTUALIZAR Y BORRAR CATEGORIA YA QUE ESTA TODO JUNTADO EN UNA(FXMLAÑADIRCATEGORIA)
+        fxMenuBar.setVisible(false);
+        fxMenuItemActualizarCategoria.setVisible(false);
+        fxMenuItemBorrarCategoria.setVisible(false);
+        
         preCargaLogin();
+        preCargaBienvenida();
         preCargaActualizarArticulo();
         preCargaActualizarCategoria();
         preCargaActualizarEmpleado();
@@ -260,6 +342,7 @@ public class FXMLPantallaPrincipalController implements Initializable {
         preCargaBorrarArticulo();
         preCargaBorrarCategoria();
         preCargaBorrarEmpleado();
+        
         cargarPantallaLogin();
 
     }

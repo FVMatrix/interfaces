@@ -7,7 +7,9 @@ package fx.controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 
 /**
  * FXML Controller class
@@ -21,6 +23,16 @@ public class FXMLPantallaBienvenidaController implements Initializable {
     public void setInicio(FXMLPantallaPrincipalController inicio) {
         this.inicio = inicio;
     }
+    
+    @FXML
+    private Label fxBienvenida;
+    
+    
+    public void cambiarNombreBienvenida(){
+        fxBienvenida.setText(inicio.getNombreEmpleado());
+    }
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

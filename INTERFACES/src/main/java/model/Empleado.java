@@ -18,14 +18,19 @@ public class Empleado {
     private int telefono;
     private String ubicacion;
     private int tipo_empleado;
-    private String contraseña;
+    private String pass;
     private String email;
     
     public Empleado(){
         
     }
+    
+    public Empleado(String dni, String contra){
+        this.dni = dni;
+        this.pass = contra;
+    }
 
-    public Empleado(int id_empleado, String dni, String nombre, String apellido, int telefono, String ubicacion, int tipo_usuario, String contraseña, String email) {
+    public Empleado(int id_empleado, String dni, String nombre, String apellido, int telefono, String ubicacion, int tipo_usuario, String pass, String email) {
         this.id_empleado = id_empleado;
         this.dni = dni;
         this.nombre = nombre;
@@ -33,7 +38,7 @@ public class Empleado {
         this.telefono = telefono;
         this.ubicacion = ubicacion;
         this.tipo_empleado = tipo_usuario;
-        this.contraseña = contraseña;
+        this.pass = pass;
         this.email = email;
     }
 
@@ -93,12 +98,12 @@ public class Empleado {
         this.tipo_empleado = tipo_empleado;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getPass() {
+        return pass;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setPass(String pass) {
+        this.pass = pass;
     }
 
     public String getEmail() {
@@ -110,12 +115,12 @@ public class Empleado {
     }
 
     public String toStringConTodo() {
-        return "ID:" + id_empleado + ". DNI: " + dni + ". NOMBRE: " + nombre + ". APELLIDOS: " + apellido + ". TELEFONO" + telefono + ". UBICACIÓN: " + ubicacion + ". TIPO DE USUARIO: " + tipo_empleado;
+        return "ID:" + id_empleado + ". DNI: " + dni + ". NOMBRE: " + nombre + ". APELLIDOS: " + apellido + ". TELEFONO " + telefono + ". UBICACIÓN: " + ubicacion + ". TIPO DE USUARIO: " + tipo_empleado;
     }
 
     @Override
     public String toString() {
-        return "DNI: " + dni + ". NOMBRE: " + nombre + ". APELLIDOS: " + apellido + ". TELEFONO" + telefono + ". UBICACIÓN: " + ubicacion;
+        return "DNI: " + dni + ". NOMBRE: " + nombre + ". APELLIDOS: " + apellido + ". TELEFONO " + telefono + ". UBICACIÓN: " + ubicacion;
 
     }
 

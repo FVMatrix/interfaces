@@ -86,8 +86,8 @@ public class FXMLPantallaActualizarEmpleadoController implements Initializable {
             fxNombre.setText(pulsada.getNombre());
             fxApellidos.setText(pulsada.getApellido());
             fxTelefono.setText(String.valueOf(pulsada.getTelefono()));
-            fxContraseña.setText(pulsada.getContraseña());
-            fxContraseña2.setText(pulsada.getContraseña());
+            fxContraseña.setText(pulsada.getPass());
+            fxContraseña2.setText(pulsada.getPass());
             fxEmail.setText(pulsada.getEmail());
         }
     }
@@ -108,7 +108,7 @@ public class FXMLPantallaActualizarEmpleadoController implements Initializable {
             c.setApellido(fxApellidos.getText());
             c.setTelefono(Integer.parseInt(fxTelefono.getText()));
             c.setUbicacion(fxUbicacion.getSelectionModel().getSelectedItem().toString());
-            c.setContraseña(fxContraseña.getText());
+            c.setPass(fxContraseña.getText());
             c.setEmail(fxEmail.getText());
 
             int filas = sc.modificarEmpleado(c);

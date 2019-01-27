@@ -9,10 +9,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="900.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="fx.controllers.FXMLPantallaLoginController">
+<AnchorPane id="AnchorPane" fx:id="pantallaLogin" prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fx.controllers.FXMLPantallaLoginController">
    <children>
-      <Label layoutX="191.0" layoutY="253.0" text="USUARIO">
+      <Label layoutX="174.0" layoutY="253.0" text="DNI USUARIO">
          <font>
             <Font size="18.0" />
          </font>
@@ -22,9 +21,15 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField layoutX="328.0" layoutY="243.0" prefHeight="47.0" prefWidth="274.0" />
-      <PasswordField layoutX="328.0" layoutY="357.0" prefHeight="47.0" prefWidth="274.0" />
-      <Button layoutX="356.0" layoutY="459.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="188.0" text="INICIAR SESIÓN" />
+      <TextField fx:id="fxDNIUsuario" layoutX="328.0" layoutY="243.0" prefHeight="47.0" prefWidth="274.0">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+      <PasswordField fx:id="fxContra" layoutX="328.0" layoutY="357.0" prefHeight="47.0" prefWidth="274.0">
+         <font>
+            <Font size="18.0" />
+         </font></PasswordField>
+      <Button layoutX="356.0" layoutY="459.0" mnemonicParsing="false" onAction="#hacerLogin" prefHeight="62.0" prefWidth="188.0" text="INICIAR SESIÓN" />
       <ImageView fitHeight="150.0" fitWidth="559.0" layoutX="253.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/bienvenido.png" />

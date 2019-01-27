@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fx.controllers.FXMLPantallaAñadirCategoriaController">
+<AnchorPane id="AnchorPane" fx:id="pantallaAñadirCategoria" prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fx.controllers.FXMLPantallaAñadirCategoriaController">
    <children>
       <Label layoutX="320.0" layoutY="120.0" text="DESCRIPCION" />
       <ComboBox fx:id="fxCategoria2" layoutX="61.0" layoutY="452.0" prefHeight="31.0" prefWidth="196.0" promptText="Seleccione categoría" />

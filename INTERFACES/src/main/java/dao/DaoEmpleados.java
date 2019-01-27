@@ -32,9 +32,9 @@ public class DaoEmpleados {
             QueryRunner qr = new QueryRunner();
 
             Number id = qr.insert(con,
-                    "insert into empleados (nombre, apellido, telefono, ubicacion, tipo_empleado, contraseña, email, dni) values(?,?,?,?,?,?,?,?)",
+                    "insert into empleados (nombre, apellido, telefono, ubicacion, tipo_empleado, pass, email, dni) values(?,?,?,?,?,?,?,?)",
                     new ScalarHandler<>(),
-                    emp.getNombre(), emp.getApellido(), emp.getTelefono(), emp.getUbicacion(), emp.getTipo_empleado(), emp.getContraseña(), emp.getEmail(), emp.getDni());
+                    emp.getNombre(), emp.getApellido(), emp.getTelefono(), emp.getUbicacion(), emp.getTipo_empleado(), emp.getPass(), emp.getEmail(), emp.getDni());
             filas = id.intValue();
 
         } catch (Exception ex) {
@@ -150,8 +150,8 @@ public class DaoEmpleados {
             QueryRunner qr = new QueryRunner();
 
             filas = qr.update(con,
-                    "UPDATE empleados SET nombre = ?, apellido = ?, telefono = ?, ubicacion = ? ,contraseña = ?,email = ?, dni = ? WHERE id_empleado = ?",
-                    emp.getNombre(), emp.getApellido(), emp.getTelefono(), emp.getUbicacion(), emp.getContraseña(), emp.getEmail(), emp.getDni(), emp.getId_empleado());
+                    "UPDATE empleados SET nombre = ?, apellido = ?, telefono = ?, ubicacion = ? ,pass = ?,email = ?, dni = ? WHERE id_empleado = ?",
+                    emp.getNombre(), emp.getApellido(), emp.getTelefono(), emp.getUbicacion(), emp.getPass(), emp.getEmail(), emp.getDni(), emp.getId_empleado());
 
         } catch (Exception ex) {
             Logger.getLogger(DaoArticulos.class.getName()).log(Level.SEVERE, null, ex);

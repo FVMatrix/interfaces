@@ -9,30 +9,30 @@
     <top>
         <MenuBar fx:id="fxMenuBar" BorderPane.alignment="CENTER">
             <menus>
-                <Menu mnemonicParsing="false" text="General">
+                <Menu fx:id="fxMenuGeneral" mnemonicParsing="false" text="General">
                     <items>
                         <MenuItem mnemonicParsing="false" onAction="#cargarPantallaLogin" text="Volver al Login" />
                     </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Articulos">
+                <Menu fx:id="fxMenuArticulos" mnemonicParsing="false" text="Articulos">
                     <items>
                         <MenuItem mnemonicParsing="false" onAction="#cargarPantallaAñadirArticulo" text="Añadir" />
                         <MenuItem mnemonicParsing="false" onAction="#cargarPantallaActualizarArticulo" text="Actualizar" />
                         <MenuItem mnemonicParsing="false" onAction="#cargarPantallaBorrarArticulo" text="Borrar" />
                     </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Empleados">
+                <Menu fx:id="fxMenuEmpleados" mnemonicParsing="false" text="Empleados">
                     <items>
                         <MenuItem mnemonicParsing="false" onAction="#cargarPantallaAñadirEmpleado" text="Añadir" />
                         <MenuItem mnemonicParsing="false" onAction="#cargarPantallaActualizarEmpleado" text="Actualizar" />
                         <MenuItem mnemonicParsing="false" onAction="#cargarPantallaBorrarEmpleado" text="Borrar" />
                     </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Categorias">
+                <Menu fx:id="fxMenuCategorias" mnemonicParsing="false" text="Categorias">
                     <items>
                         <MenuItem mnemonicParsing="false" onAction="#cargarPantallaAñadirCategoria" text="Añadir" />
-                        <MenuItem mnemonicParsing="false" onAction="#cargarPantallaActualizarCategoria" text="Actualizar" />
-                        <MenuItem mnemonicParsing="false" onAction="#cargarPantallaBorrarCategoria" text="Borrar" />
+                        <MenuItem fx:id="fxMenuItemActualizarCategoria" mnemonicParsing="false" onAction="#cargarPantallaActualizarCategoria" text="Actualizar" />
+                        <MenuItem fx:id="fxMenuItemBorrarCategoria" mnemonicParsing="false" onAction="#cargarPantallaBorrarCategoria" text="Borrar" />
                     </items>
                 </Menu>
             </menus>
