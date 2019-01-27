@@ -31,17 +31,16 @@ public class DaoArticulos {
         Connection con = null;
         try {
             con = db.getConnection();
-            
+
             con.setAutoCommit(false);
             QueryRunner qr = new QueryRunner();
-
 
             Number id = qr.insert(con,
                     "insert into articulos (id_categoria, nombre, imagenes, descripcion, ubicacion, fecha_alta, responsable) values(?,?,?,?,?,?,?)",
                     new ScalarHandler<>(),
                     art.getId_categoria(), art.getNombre(), art.getImagenes(), art.getDescripcion(), art.getUbicacion(), art.getFecha_de_alta(), art.getId_responsable());
             filas = id.intValue();
-            
+
             id = qr.insert(con,
                     "insert into cambios (id_articulo, fecha_cambio,descripcion) values(?,?,?)",
                     new ScalarHandler<>(),
@@ -97,17 +96,16 @@ public class DaoArticulos {
 
 //            filas = qr.update(con,
 //                    "DELETE FROM fechas_cambios WHERE id_articulo = ?", art.getId_articulo());
-
             filas = qr.update(con,
                     "DELETE FROM usuario_articulo WHERE id_articulo = ?", art.getId_articulo());
 
             filas += qr.update(con,
                     "DELETE FROM articulos WHERE id_articulo = ?", art.getId_articulo());
 
-            filas = qr.insert(con, "insert into cambios (id_articulo,fecha_cambio,descripcion) values(?,?,?)",
+            Number num = qr.insert(con, "insert into cambios (id_articulo,fecha_cambio,descripcion) values(?,?,?)",
                     new ScalarHandler<>(),
-                    art.getId_articulo(), Date.valueOf(LocalDate.now()),"Eliminación de artículo");
-            
+                    art.getId_articulo(), Date.valueOf(LocalDate.now()), "Eliminación de artículo");
+            filas += num.intValue();
             con.commit();
 
         } catch (Exception ex) {
@@ -155,13 +153,13 @@ public class DaoArticulos {
             QueryRunner qr = new QueryRunner();
 
             filas = qr.update(con,
-                    "UPDATE articulos SET nombre = ?, id_categoria = ?, imagenes = ?, descripcion = ?, ubicacion = ?,responsable = ?,descripcion = ?, WHERE id_articulo = ?",
-                    art.getNombre(), art.getId_categoria(), art.getImagenes(), art.getDescripcion(), art.getUbicacion(), art.getId_responsable(), art.getDescripcion(), art.getId_articulo());
+                    "UPDATE articulos SET nombre = ?, id_categoria = ?, imagenes = ?, descripcion = ?, ubicacion = ?, responsable = ?  WHERE id_articulo = ?",
+                    art.getNombre(), art.getId_categoria(), art.getImagenes(), art.getDescripcion(), art.getUbicacion(), art.getId_responsable(), art.getId_articulo());
 
-            filas = qr.insert(con, "insert into cambios (id_articulo,fecha_cambio,descripcion) values(?,?,?)",
+            Number num = qr.insert(con, "insert into cambios (id_articulo,fecha_cambio,descripcion) values(?,?,?)",
                     new ScalarHandler<>(),
-                    art.getId_articulo(), Date.valueOf(LocalDate.now()),"Modificación de artículo");
-
+                    art.getId_articulo(), Date.valueOf(LocalDate.now()), "Modificación de artículo");
+            filas += num.intValue();
             con.commit();
         } catch (Exception ex) {
             try {

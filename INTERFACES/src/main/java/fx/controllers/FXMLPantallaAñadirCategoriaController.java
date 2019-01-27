@@ -50,6 +50,11 @@ public class FXMLPantallaAñadirCategoriaController implements Initializable {
         this.inicio = inicio;
     }
 
+    public void limpiarTabla() {
+        fxTablaBorrar.getColumns().clear();
+        fxTablaBorrar.getItems().clear();
+    }
+
     public void cargar() {
         ServiciosCategoria sc = new ServiciosCategoria();
         fxCategoria.getItems().clear();
@@ -153,12 +158,13 @@ public class FXMLPantallaAñadirCategoriaController implements Initializable {
             int filas = sc.borrarCategoria(c);
 
             if (filas > 0) {
-                Alert aa = new Alert(Alert.AlertType.INFORMATION, "Categoria actualizada", ButtonType.CLOSE);
+                Alert aa = new Alert(Alert.AlertType.INFORMATION, "Categoria borrada", ButtonType.CLOSE);
                 aa.showAndWait();
                 fxNombreNuevo.clear();
                 fxDescripcionNuevo.clear();
                 fxCategoria2.getItems().remove(c);
                 fxCategoria.getItems().remove(c);
+                limpiarTabla();
 
             } else if (filas == -2) {
                 alertError.setContentText("No se puede borrar esta categoria");

@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -39,9 +40,6 @@ public class FXMLPantallaBorrarArticuloController implements Initializable {
 
     @FXML
     public void cargarTabla() {
-//        ServiciosArticulos sa = new ServiciosArticulos();
-//        List<Articulo> art;
-//        art = sa.cargarTodosLosArticulos();
         fxTableView.getColumns().clear();
         fxTableView.getItems().clear();
         TableColumn nombre = new TableColumn("Nombre");
@@ -62,14 +60,16 @@ public class FXMLPantallaBorrarArticuloController implements Initializable {
         descipcion.setCellValueFactory(new PropertyValueFactory("descripcion"));
         Articulo a = (Articulo) fxComboBox.getSelectionModel().getSelectedItem();
         fxTableView.getItems().add(a);
-//añadirTOdo
-//        for (int i = 0; i < art.size(); i++) {
-//            fxTableView.getItems().addAll(art.get(i));
-//        }
+    }
+
+    public void limpiarTabla() {
+        fxTableView.getColumns().clear();
+        fxTableView.getItems().clear();
     }
 
     @FXML
     public void cargarComboBox() {
+        fxComboBox.getItems().clear();
         ServiciosArticulos sa = new ServiciosArticulos();
         List<Articulo> art;
         art = sa.cargarTodosLosArticulos();
@@ -78,7 +78,28 @@ public class FXMLPantallaBorrarArticuloController implements Initializable {
 
     @FXML
     public void borrarArticulo() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(null);
+        alert.setHeaderText(null);
+        ServiciosArticulos sa = new ServiciosArticulos();
+        if (fxComboBox.getSelectionModel().getSelectedItem() != null) {
+            Articulo a = (Articulo) fxComboBox.getSelectionModel().getSelectedItem();
+            int num = sa.borrarArticulo(a);
+            if (num > 0) {
+                limpiarTabla();
+                fxComboBox.getItems().remove(a);
+                alert.setAlertType(Alert.AlertType.INFORMATION);
+                alert.setContentText("Se ha borrado correctamente");
+                alert.showAndWait();
+            } else if (num == -2) {
+                alert.setContentText("Este Articulo no se puede borrar.");
+                alert.showAndWait();
+            }
 
+        } else {
+            alert.setContentText("Seleccione un articulo");
+            alert.showAndWait();
+        }
     }
 
     @Override

@@ -186,6 +186,10 @@ public class FXMLPantallaPrincipalController implements Initializable {
     @FXML
     public void cargarPantallaActualizarArticulo() {
         fxRoot.setCenter(pantallaActualizarArticulo);
+        controllerActualizarArticulo.cargarComboArticulos();
+        controllerActualizarArticulo.cargarComboResponsable();
+        controllerActualizarArticulo.cargarComboCategoria();
+        controllerActualizarArticulo.cargarComboUbicacion();
     }
 
     @FXML

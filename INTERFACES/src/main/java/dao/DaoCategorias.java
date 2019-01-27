@@ -73,7 +73,7 @@ public class DaoCategorias {
             QueryRunner qr = new QueryRunner();
 
             filas = qr.update(con,
-                    "DELETE FROM categorias WHERE id_categoria = ?", cat.getIdCategoria());
+                    "DELETE FROM categorias WHERE id_categoria = ?", cat.getId_categoria());
 
         } catch (SQLException ex) {
             filas = -2;
@@ -116,7 +116,7 @@ public class DaoCategorias {
 
             filas = qr.update(con,
                     "UPDATE categorias SET nombre = ?, descripcion = ? WHERE id_categoria = ?",
-                    cat.getNombre(), cat.getDescripcion(), cat.getIdCategoria());
+                    cat.getNombre(), cat.getDescripcion(), cat.getId_categoria());
 
         } catch (Exception ex) {
             Logger.getLogger(DaoCategorias.class.getName()).log(Level.SEVERE, null, ex);

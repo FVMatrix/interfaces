@@ -36,6 +36,7 @@ public class FXMLPantallaBorrarEmpleadoController implements Initializable {
     private ComboBox fxComboBox;
 
     public void cargarComboBox() {
+        fxComboBox.getItems().clear();
         ServiciosEmpleado se = new ServiciosEmpleado();
         List<Empleado> empleados;
         empleados = se.cargarTodosLosEmpleados();
@@ -64,7 +65,12 @@ public class FXMLPantallaBorrarEmpleadoController implements Initializable {
         ubicacion.setCellValueFactory(new PropertyValueFactory("ubicacion"));
         telefono.setCellValueFactory(new PropertyValueFactory("telefono"));
         Empleado e = (Empleado) fxComboBox.getSelectionModel().getSelectedItem();
-        fxTableView.getItems().add(e);  
+        fxTableView.getItems().add(e);
+    }
+
+    public void limpiarTabla() {
+        fxTableView.getColumns().clear();
+        fxTableView.getItems().clear();
     }
 
     @FXML
@@ -77,6 +83,8 @@ public class FXMLPantallaBorrarEmpleadoController implements Initializable {
             Empleado e = (Empleado) fxComboBox.getSelectionModel().getSelectedItem();
             int num = se.borrarEmpleado(e);
             if (num > 0) {
+                limpiarTabla();
+                fxComboBox.getItems().remove(e);
                 alert.setContentText("Se ha borrado correctamente");
                 alert.showAndWait();
                 fxComboBox.getItems().remove(e);

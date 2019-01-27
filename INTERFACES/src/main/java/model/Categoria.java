@@ -11,7 +11,7 @@ package model;
  */
 public class Categoria {
 
-    private int idCategoria;
+    private int id_categoria;
     private String nombre;
     private String descripcion;
 
@@ -19,18 +19,18 @@ public class Categoria {
 
     }
 
-    public Categoria(int idCategoria, String nombre, String descripcion) {
-        this.idCategoria = idCategoria;
+    public Categoria(int id_categoria, String nombre, String descripcion) {
+        this.id_categoria = id_categoria;
         this.nombre = nombre;
         this.descripcion = descripcion;
     }
 
-    public int getIdCategoria() {
-        return idCategoria;
+    public int getId_categoria() {
+        return id_categoria;
     }
 
-    public void setIdCategoria(int idCategoria) {
-        this.idCategoria = idCategoria;
+    public void setId_categoria(int id_categoria) {
+        this.id_categoria = id_categoria;
     }
 
     public String getNombre() {
@@ -55,6 +55,6 @@ public class Categoria {
     }
 
     public String toStringConTodo() {
-        return "Categoria{" + "idCategoria=" + idCategoria + ", nombre=" + nombre + ", descripcion=" + descripcion + '}';
+        return "Categoria{" + "idCategoria=" + id_categoria + ", nombre=" + nombre + ", descripcion=" + descripcion + '}';
     }
 }

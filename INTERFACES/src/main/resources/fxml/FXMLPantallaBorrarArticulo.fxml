@@ -17,7 +17,6 @@
       <Label layoutX="131.0" layoutY="184.0" text="Seleccione el artículo que desea borrar" />
       <ComboBox fx:id="fxComboBox" layoutX="421.0" layoutY="179.0" onAction="#cargarTabla" prefHeight="31.0" prefWidth="198.0" />
       <TableView fx:id="fxTableView" layoutX="101.0" layoutY="271.0" prefHeight="198.0" prefWidth="700.0" />
-      <Button layoutX="364.0" layoutY="533.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="174.0" text="BORRAR" />
-      <Label layoutX="153.0" layoutY="481.0" text="(En la tabla se mostrará la información mas detallada del articulos seleccionado en el ComboBox)" />
+      <Button layoutX="364.0" layoutY="533.0" mnemonicParsing="false" onAction="#borrarArticulo" prefHeight="59.0" prefWidth="174.0" text="BORRAR" />
    </children>
 </AnchorPane>

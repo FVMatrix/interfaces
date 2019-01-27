@@ -50,6 +50,7 @@ public class FXMLPantallaAñadirArticuloController implements Initializable {
 
     @FXML
     public void cargarComboBoxCategoria() {
+        fxComboBoxCategoria.getItems().clear();
         servicios.ServiciosCategoria sc = new ServiciosCategoria();
         List<Categoria> categorias = sc.cargarTodosLasCategorias();
         fxComboBoxCategoria.getItems().addAll(categorias);
@@ -57,7 +58,16 @@ public class FXMLPantallaAñadirArticuloController implements Initializable {
     }
 
     @FXML
+    public void cargarComboBoxResponsable() {
+        fxComboBoxResponsable.getItems().clear();
+        ServiciosEmpleado se = new ServiciosEmpleado();
+        List<Empleado> empl = se.cargarTodosLosEmpleados();
+        fxComboBoxResponsable.getItems().addAll(empl);
+    }
+
+    @FXML
     public void cargarComboBoxUbicacion() {
+        fxComboBoxUbicacion.getItems().clear();
         List<String> ubicaciones = new LinkedList();
         ubicaciones.add("Despacho Director");
         ubicaciones.add("Departamento Marketing");
@@ -66,12 +76,7 @@ public class FXMLPantallaAñadirArticuloController implements Initializable {
         fxComboBoxUbicacion.getItems().addAll(ubicaciones);
     }
 
-    @FXML
-    public void cargarComboBoxResponsable() {
-//        ServiciosEmpleado se = new ServiciosEmpleado();
-//        se.cargarTodosLosEmpleados();
-//        
-    }
+    
 
     @FXML
     public void añadirArticulo() {
@@ -92,7 +97,7 @@ public class FXMLPantallaAñadirArticuloController implements Initializable {
             }
 
             Categoria cat = (Categoria) fxComboBoxCategoria.getSelectionModel().getSelectedItem();
-            Articulo o = new Articulo(0, fxNombre.getText(), cat.getIdCategoria(), "imagenes", fxTextAreaDescripcion.getText(), ubicacion, idEmpleado, Date.valueOf(LocalDate.now()));
+            Articulo o = new Articulo(0, fxNombre.getText(), cat.getId_categoria(), "imagenes", fxTextAreaDescripcion.getText(), ubicacion, idEmpleado, Date.valueOf(LocalDate.now()));
             int num = sa.añadirArticulo(o);
             if (num > 0) {
                 alert.setAlertType(Alert.AlertType.INFORMATION);
