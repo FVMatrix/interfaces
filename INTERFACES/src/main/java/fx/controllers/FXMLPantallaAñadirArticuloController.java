@@ -5,18 +5,29 @@
  */
 package fx.controllers;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
+import javax.imageio.ImageIO;
 import model.Categoria;
 import model.Articulo;
 import model.Empleado;
@@ -76,8 +87,6 @@ public class FXMLPantallaAñadirArticuloController implements Initializable {
         fxComboBoxUbicacion.getItems().addAll(ubicaciones);
     }
 
-    
-
     @FXML
     public void añadirArticulo() {
         servicios.ServiciosArticulos sa = new ServiciosArticulos();
@@ -113,6 +122,36 @@ public class FXMLPantallaAñadirArticuloController implements Initializable {
             alert.setAlertType(Alert.AlertType.ERROR);
             alert.setContentText("Debe Rellenar los campos obligatorios");
             alert.showAndWait();
+        }
+    }
+
+//    public  void saveToFile(Image image) {
+//        File inputFile = new File(this.getClass().getResource("/images").toString());
+//        BufferedImage bImage = SwingFXUtils.fromFXImage(image, null);
+//        try {
+//            ImageIO.write(bImage, "JPG", inputFile);
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
+
+    @FXML
+    public void añadirImagenes() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Resource File");
+        fileChooser.getExtensionFilters().addAll(
+                new ExtensionFilter("Image Files", "*.png", "*.jpg"));
+        File selectedFile = fileChooser.showOpenDialog(null);
+        if (selectedFile != null) {
+            try {
+
+                String imageFile = selectedFile.toURI().toURL().toString();
+                Image image = new Image(imageFile);
+             //   saveToFile(image);
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(FXMLPantallaAñadirArticuloController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            System.out.println(selectedFile.getName());
         }
     }
 

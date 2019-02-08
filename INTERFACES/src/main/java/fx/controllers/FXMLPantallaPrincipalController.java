@@ -62,10 +62,10 @@ public class FXMLPantallaPrincipalController implements Initializable {
 
     @FXML
     private Menu fxMenuGeneral;
-    
+
     @FXML
     private MenuItem fxMenuItemActualizarCategoria;
-    
+
     @FXML
     private MenuItem fxMenuItemBorrarCategoria;
 
@@ -103,6 +103,9 @@ public class FXMLPantallaPrincipalController implements Initializable {
     private AnchorPane pantallaBienvenida;
     private FXMLPantallaBienvenidaController controllerBienvenida;
 
+    private AnchorPane pantallaVerArticulo;
+    private FXMLPantallaVerArticulosController controllerVerArticulo;
+
     // <editor-fold defaultstate="collapsed" desc="Precargas de Pantallas">  
     private void preCargaLogin() {
         try {
@@ -123,6 +126,18 @@ public class FXMLPantallaPrincipalController implements Initializable {
             pantallaActualizarArticulo = loaderMenu.load();
             controllerActualizarArticulo = loaderMenu.getController();
             controllerActualizarArticulo.setInicio(this);
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void preCargaVerArticulo() {
+        try {
+            FXMLLoader loaderMenu = new FXMLLoader(
+                    getClass().getResource("/fxml/FXMLPantallaVerArticulos.fxml"));
+            pantallaVerArticulo = loaderMenu.load();
+            controllerVerArticulo = loaderMenu.getController();
+            controllerVerArticulo.setInicio(this);
         } catch (IOException ex) {
             Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -248,6 +263,12 @@ public class FXMLPantallaPrincipalController implements Initializable {
     }
 
     @FXML
+    public void cargarPantallaVerArticulo() {
+        fxRoot.setCenter(pantallaVerArticulo);
+        controllerVerArticulo.cargarComboBox();
+    }
+
+    @FXML
     public void cargarPantallaActualizarEmpleado() {
         controllerActualizarEmpleado.cargar();
         controllerActualizarEmpleado.cargarComboBoxUbicacion();
@@ -316,10 +337,13 @@ public class FXMLPantallaPrincipalController implements Initializable {
                 fxMenuEmpleados.setVisible(false);
                 break;
             default:
-                throw new AssertionError();
+                //esto sobra; es un atajo para no estar haciendo el login todo el rato
+                fxMenuCategorias.setVisible(true);
+                fxMenuEmpleados.setVisible(true);
+                fxMenuArticulos.setVisible(true);
         }
         fxMenuBar.setVisible(true);
-        controllerBienvenida.cambiarNombreBienvenida();
+        //   controllerBienvenida.cambiarNombreBienvenida();
         fxRoot.setCenter(pantallaBienvenida);
     }
 
@@ -330,9 +354,10 @@ public class FXMLPantallaPrincipalController implements Initializable {
         fxMenuBar.setVisible(false);
         fxMenuItemActualizarCategoria.setVisible(false);
         fxMenuItemBorrarCategoria.setVisible(false);
-        
+
         preCargaLogin();
         preCargaBienvenida();
+        preCargaVerArticulo();
         preCargaActualizarArticulo();
         preCargaActualizarCategoria();
         preCargaActualizarEmpleado();
@@ -342,8 +367,9 @@ public class FXMLPantallaPrincipalController implements Initializable {
         preCargaBorrarArticulo();
         preCargaBorrarCategoria();
         preCargaBorrarEmpleado();
-        
-        cargarPantallaLogin();
+        //cargarPantallaLogin();
+        //borrar de aqui cargarPantallaBienvenida y descomentar el login 
+        cargarPantallaBienvenida();
 
     }
 

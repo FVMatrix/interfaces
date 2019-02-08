@@ -16,6 +16,7 @@
                 </Menu>
                 <Menu fx:id="fxMenuArticulos" mnemonicParsing="false" text="Articulos">
                     <items>
+                  <MenuItem mnemonicParsing="false" onAction="#cargarPantallaVerArticulo" text="Ver" />
                         <MenuItem mnemonicParsing="false" onAction="#cargarPantallaAñadirArticulo" text="Añadir" />
                         <MenuItem mnemonicParsing="false" onAction="#cargarPantallaActualizarArticulo" text="Actualizar" />
                         <MenuItem mnemonicParsing="false" onAction="#cargarPantallaBorrarArticulo" text="Borrar" />

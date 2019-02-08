@@ -40,6 +40,7 @@ public class FXMLPantallaLoginController implements Initializable {
     @FXML
     private Alert alert;
 
+    @FXML
     public void hacerLogin() {
         ServiciosEmpleado se = new ServiciosEmpleado();
         if (fxDNIUsuario.getText().equals("") || fxContra.getText().equals("")) {
