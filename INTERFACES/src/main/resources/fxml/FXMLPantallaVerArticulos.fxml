@@ -7,14 +7,13 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="750.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="fx.controllers.FXMLPantallaVerArticulosController">
+<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fx.controllers.FXMLPantallaVerArticulosController">
    <children>
       <ImageView fx:id="fxImageView" fitHeight="143.0" fitWidth="241.0" layoutX="240.0" layoutY="337.0" pickOnBounds="true" preserveRatio="true" />
       <ComboBox fx:id="fxComboBox" layoutX="463.0" layoutY="96.0" onAction="#cargarTabla" prefHeight="31.0" prefWidth="203.0" />
       <TableView fx:id="fxTableView" layoutX="25.0" layoutY="199.0" prefHeight="125.0" prefWidth="700.0" />
       <Label layoutX="37.0" layoutY="101.0" text="Seleccione un Articulo para ver su informacion detallada:" />
-      <Button layoutX="523.0" layoutY="390.0" mnemonicParsing="false" text="Siguiente" />
-      <Button layoutX="139.0" layoutY="390.0" mnemonicParsing="false" text="Anterior" />
+      <Button layoutX="523.0" layoutY="390.0" mnemonicParsing="false" onAction="#mostrarImagenSiguiente" text="Siguiente" />
+      <Button layoutX="139.0" layoutY="390.0" mnemonicParsing="false" onAction="#mostrarImagenAnterior" text="Anterior" />
    </children>
 </AnchorPane>

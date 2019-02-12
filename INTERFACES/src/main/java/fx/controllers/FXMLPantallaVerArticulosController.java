@@ -36,6 +36,11 @@ public class FXMLPantallaVerArticulosController implements Initializable {
     public void setInicio(FXMLPantallaPrincipalController inicio) {
         this.inicio = inicio;
     }
+    private String imagenesDeArticulo;
+    private String imagenesDeprueba;
+    private String imagenActual;
+    private String[] imagenesSeparadas;
+
     @FXML
     private ComboBox fxComboBox;
     @FXML
@@ -71,28 +76,100 @@ public class FXMLPantallaVerArticulosController implements Initializable {
         ubicacion.setCellValueFactory(new PropertyValueFactory("ubicacion"));
         descipcion.setCellValueFactory(new PropertyValueFactory("descripcion"));
         fxTableView.getItems().add(a);
-        cargarImageView();
+        cargarImageView(a);
     }
 
-    public void cargarImageView() {
-        File file;
+    public void cargarImageView(Articulo a) {
 
-        // File file = new File("");
-//            file = new File(this.getClass().getResource("/src/main/resources/images/bienvenido.png").toURI());
-        Image image = new Image(this.getClass().getResource("/images/bienvenido.png").toString());
-
-        //  Image image = new Image(this.getClass().getResource("images/bienvenido.png").toURI().toString());
+        imagenesDeArticulo = a.getImagenes();
+        imagenesDeprueba = "monitorAcer.jpg;monitorAcerPredator.jpg;monitorSamsung.png;";
+        imagenesSeparadas = imagenesDeprueba.split(";");
+        Image image = new Image(this.getClass().getResource("/images/" + imagenesSeparadas[0]).toString());
+        setImagenActual(imagenesSeparadas[0]);
         fxImageView.setImage((image));
     }
 
-    public void mostrarImagenSiguiente() {
-        List<String> imagenes = new LinkedList();
-        
-        
+    public int devuelvemeLaPosicionDeLaImagenActual() {
+        int num = 0;
+        for (int i = 0; i < imagenesSeparadas.length; i++) {
+            if (imagenesSeparadas[i].equals(getImagenActual())) {
+                num = i;
+            }
+        }
+        return num;
     }
 
-    public void mostrarImagenAnterior() {
+    //Cuando sea la ultima imagen de la lista y el usuario pulsa "Siguiente Imagen"
+    public void mostrarLaPrimeraImagen() {
+        Image image = new Image(this.getClass().getResource("/images/" + imagenesSeparadas[0]).toString());
+        setImagenActual(imagenesSeparadas[0]);
+        fxImageView.setImage((image));
+    }
+    //Cuando sea la primera imagen de la lista y el usuario pulsa "Anterior Imagen"
 
+    public void mostrarLaUltimaImagen() {
+        Image image = new Image(this.getClass().getResource("/images/" + imagenesSeparadas[imagenesSeparadas.length - 1]).toString());
+        setImagenActual(imagenesSeparadas[imagenesSeparadas.length - 1]);
+        fxImageView.setImage((image));
+    }
+
+    @FXML
+    public void mostrarImagenSiguiente() {
+
+        String cual = getImagenActual();
+        if (imagenesSeparadas[imagenesSeparadas.length - 1].equals(cual)) {
+            mostrarLaPrimeraImagen();
+        } else {
+            int num = devuelvemeLaPosicionDeLaImagenActual();
+            Image image = new Image(this.getClass().getResource("/images/" + imagenesSeparadas[num + 1]).toString());
+            setImagenActual(imagenesSeparadas[num + 1]);
+            fxImageView.setImage((image));
+        }
+    }
+
+    @FXML
+    public void mostrarImagenAnterior() {
+        String cual = getImagenActual();
+        if (imagenesSeparadas[0].equals(cual)) {
+            mostrarLaUltimaImagen();
+        } else {
+            int num = devuelvemeLaPosicionDeLaImagenActual();
+            Image image = new Image(this.getClass().getResource("/images/" + imagenesSeparadas[num - 1]).toString());
+            setImagenActual(imagenesSeparadas[num - 1]);
+            fxImageView.setImage((image));
+        }
+    }
+
+    public String[] getImagenesSeparadas() {
+        return imagenesSeparadas;
+    }
+
+    public void setImagenesSeparadas(String[] imagenesSeparadas) {
+        this.imagenesSeparadas = imagenesSeparadas;
+    }
+
+    public String getImagenesDeArticulo() {
+        return imagenesDeArticulo;
+    }
+
+    public void setImagenesDeArticulo(String imagenesDeArticulo) {
+        this.imagenesDeArticulo = imagenesDeArticulo;
+    }
+
+    public String getImagenesDeprueba() {
+        return imagenesDeprueba;
+    }
+
+    public void setImagenesDeprueba(String imagenesDeprueba) {
+        this.imagenesDeprueba = imagenesDeprueba;
+    }
+
+    public String getImagenActual() {
+        return imagenActual;
+    }
+
+    public void setImagenActual(String imagenActual) {
+        this.imagenActual = imagenActual;
     }
 
     /**
