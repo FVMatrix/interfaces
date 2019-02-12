@@ -18,7 +18,9 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import model.Empleado;
+import model.Ubicacion;
 import servicios.ServiciosEmpleado;
+import servicios.ServiciosUbicacion;
 
 /**
  * FXML Controller class
@@ -55,13 +57,8 @@ public class FXMLPantallaActualizarEmpleadoController implements Initializable {
     }
 
     public void cargarComboBoxUbicacion() {
-        List<String> ubicaciones = new LinkedList();
-        fxUbicacion.getItems().clear();
-        ubicaciones.add("Despacho Director");
-        ubicaciones.add("Departamento Marketing");
-        ubicaciones.add("Departamento Contabilidad");
-        ubicaciones.add("Departamento Producción");
-        fxUbicacion.getItems().addAll(ubicaciones);
+        ServiciosUbicacion su = new ServiciosUbicacion();
+        fxUbicacion.getItems().addAll(su.cargarTodasLasUbicaciones());
     }
 
     public void cargar() {
@@ -107,7 +104,7 @@ public class FXMLPantallaActualizarEmpleadoController implements Initializable {
             c.setNombre(fxNombre.getText());
             c.setApellido(fxApellidos.getText());
             c.setTelefono(Integer.parseInt(fxTelefono.getText()));
-            c.setUbicacion(fxUbicacion.getSelectionModel().getSelectedItem().toString());
+            c.setUbicacion(((Ubicacion) fxUbicacion.getSelectionModel().getSelectedItem()).getIdubicaciones());
             c.setPass(fxContraseña.getText());
             c.setEmail(fxEmail.getText());
 
@@ -136,6 +133,7 @@ public class FXMLPantallaActualizarEmpleadoController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         alertError = new Alert(Alert.AlertType.ERROR);
+        cargarComboBoxUbicacion();
     }
 
 }

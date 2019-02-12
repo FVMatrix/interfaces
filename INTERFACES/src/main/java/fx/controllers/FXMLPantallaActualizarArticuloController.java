@@ -18,9 +18,11 @@ import javafx.scene.control.TextField;
 import model.Articulo;
 import model.Categoria;
 import model.Empleado;
+import model.Ubicacion;
 import servicios.ServiciosArticulos;
 import servicios.ServiciosCategoria;
 import servicios.ServiciosEmpleado;
+import servicios.ServiciosUbicacion;
 
 /**
  * FXML Controller class
@@ -57,7 +59,7 @@ public class FXMLPantallaActualizarArticuloController implements Initializable {
         fxComboBoxArticulo.getItems().addAll(art);
     }
 
-    @FXML
+    
     public void cargarCampos() {
         Articulo a = (Articulo) fxComboBoxArticulo.getSelectionModel().getSelectedItem();
         fxNombre.setText(a.getNombre());
@@ -79,14 +81,9 @@ public class FXMLPantallaActualizarArticuloController implements Initializable {
     }
 
     public void cargarComboUbicacion() {
-
-        List<String> ubicaciones = new LinkedList();
         fxComboBoxUbicacion.getItems().clear();
-        ubicaciones.add("Despacho Director");
-        ubicaciones.add("Departamento Marketing");
-        ubicaciones.add("Departamento Contabilidad");
-        ubicaciones.add("Departamento Producción");
-        fxComboBoxUbicacion.getItems().addAll(ubicaciones);
+        ServiciosUbicacion su = new ServiciosUbicacion();
+        fxComboBoxUbicacion.getItems().addAll(su.cargarTodasLasUbicaciones());
     }
 
     public void limpiarCampos() {
@@ -105,7 +102,7 @@ public class FXMLPantallaActualizarArticuloController implements Initializable {
                 a.setNombre(fxNombre.getText());
                 a.setId_categoria(((Categoria) fxComboBoxCategoria.getSelectionModel().getSelectedItem()).getId_categoria());
                 a.setId_responsable(((Empleado) fxComboBoxResponsable.getSelectionModel().getSelectedItem()).getId_empleado());
-                a.setUbicacion(fxComboBoxUbicacion.getSelectionModel().getSelectedItem().toString());
+                a.setUbicacion(((Ubicacion) fxComboBoxUbicacion.getSelectionModel().getSelectedItem()).getIdubicaciones());
                 int num = sa.modificarArticulo(a);
                 if (num > 0) {
                     alertError.setAlertType(Alert.AlertType.INFORMATION);

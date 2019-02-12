@@ -22,7 +22,7 @@ import org.apache.commons.dbutils.handlers.ScalarHandler;
  * @author dam2
  */
 public class DaoUbicacion {
-    public List<Ubicacion> cargarTodasLasCategorias() {
+    public List<Ubicacion> cargarTodasLasUbicaciones() {
         List<Ubicacion> lista = null;
         DBConnection db = new DBConnection();
         Connection con = null;

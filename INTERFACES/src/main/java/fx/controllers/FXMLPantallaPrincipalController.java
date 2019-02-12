@@ -264,14 +264,14 @@ public class FXMLPantallaPrincipalController implements Initializable {
 
     @FXML
     public void cargarPantallaVerArticulo() {
-        fxRoot.setCenter(pantallaVerArticulo);
         controllerVerArticulo.cargarComboBox();
+        fxRoot.setCenter(pantallaVerArticulo);
+        
     }
 
     @FXML
     public void cargarPantallaActualizarEmpleado() {
         controllerActualizarEmpleado.cargar();
-        controllerActualizarEmpleado.cargarComboBoxUbicacion();
         fxRoot.setCenter(pantallaActualizarEmpleado);
     }
 
@@ -367,9 +367,9 @@ public class FXMLPantallaPrincipalController implements Initializable {
         preCargaBorrarArticulo();
         preCargaBorrarCategoria();
         preCargaBorrarEmpleado();
-        //cargarPantallaLogin();
+        cargarPantallaLogin();
         //borrar de aqui cargarPantallaBienvenida y descomentar el login 
-        cargarPantallaBienvenida();
+//        cargarPantallaBienvenida();
 
     }
 

@@ -38,9 +38,7 @@ public class FXMLPantallaBorrarEmpleadoController implements Initializable {
     public void cargarComboBox() {
         fxComboBox.getItems().clear();
         ServiciosEmpleado se = new ServiciosEmpleado();
-        List<Empleado> empleados;
-        empleados = se.cargarTodosLosEmpleados();
-        fxComboBox.getItems().addAll(empleados);
+        fxComboBox.getItems().addAll(se.cargarTodosLosEmpleados());
     }
 
     @FXML
@@ -76,21 +74,27 @@ public class FXMLPantallaBorrarEmpleadoController implements Initializable {
     @FXML
     public void borrarEmpleado() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setAlertType(Alert.AlertType.ERROR);
         alert.setTitle(null);
         alert.setHeaderText(null);
         ServiciosEmpleado se = new ServiciosEmpleado();
         if (fxComboBox.getSelectionModel().getSelectedItem() != null) {
             Empleado e = (Empleado) fxComboBox.getSelectionModel().getSelectedItem();
-            int num = se.borrarEmpleado(e);
-            if (num > 0) {
-                limpiarTabla();
-                fxComboBox.getItems().remove(e);
-                alert.setContentText("Se ha borrado correctamente");
-                alert.showAndWait();
-                fxComboBox.getItems().remove(e);
+            if (!e.getDni().equals("root")) {
+                int num = se.borrarEmpleado(e);
+                if (num > 0) {
+                    limpiarTabla();
+                    fxComboBox.getItems().remove(e);
+                    alert.setContentText("Se ha borrado correctamente");
+                    alert.showAndWait();
+                    fxComboBox.getItems().remove(e);
+                } else {
+
+                    alert.setContentText("Ha ocurrido un error");
+                    alert.showAndWait();
+                }
             } else {
-                alert.setAlertType(Alert.AlertType.ERROR);
-                alert.setContentText("Ha ocurrido un error");
+                alert.setContentText("No se puede borrar al administrador ROOT");
                 alert.showAndWait();
             }
 

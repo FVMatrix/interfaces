@@ -39,7 +39,7 @@ public class Ubicacion {
 
     @Override
     public String toString() {
-        return "Ubicacion{" + "idubicaciones=" + idubicaciones + ", nombre_ubicacion=" + nombre_ubicacion + '}';
+        return nombre_ubicacion;
     }
     
     

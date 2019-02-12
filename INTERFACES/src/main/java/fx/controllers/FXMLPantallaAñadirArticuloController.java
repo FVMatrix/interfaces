@@ -36,9 +36,11 @@ import javax.swing.ImageIcon;
 import model.Categoria;
 import model.Articulo;
 import model.Empleado;
+import model.Ubicacion;
 import servicios.ServiciosArticulos;
 import servicios.ServiciosCategoria;
 import servicios.ServiciosEmpleado;
+import servicios.ServiciosUbicacion;
 
 /**
  * FXML Controller class
@@ -85,12 +87,8 @@ public class FXMLPantallaAñadirArticuloController implements Initializable {
     @FXML
     public void cargarComboBoxUbicacion() {
         fxComboBoxUbicacion.getItems().clear();
-        List<String> ubicaciones = new LinkedList();
-        ubicaciones.add("Despacho Director");
-        ubicaciones.add("Departamento Marketing");
-        ubicaciones.add("Departamento Contabilidad");
-        ubicaciones.add("Departamento Producción");
-        fxComboBoxUbicacion.getItems().addAll(ubicaciones);
+        ServiciosUbicacion su = new ServiciosUbicacion();
+        fxComboBoxUbicacion.getItems().addAll(su.cargarTodasLasUbicaciones());
     }
 
     @FXML
@@ -101,18 +99,14 @@ public class FXMLPantallaAñadirArticuloController implements Initializable {
         alert.setHeaderText(null);
         if (!fxNombre.getText().equals("") && fxComboBoxCategoria.getSelectionModel().getSelectedItem() != null && !fxTextAreaDescripcion.getText().equals("")) {
             Empleado u = null;
-            String ubicacion = null;
             int idEmpleado = 0;
             if (fxComboBoxResponsable.getSelectionModel().getSelectedItem() != null) {
                 u = (Empleado) fxComboBoxResponsable.getSelectionModel().getSelectedItem();
                 idEmpleado = u.getId_empleado();
             }
-            if (fxComboBoxUbicacion.getSelectionModel().getSelectedItem() != null) {
-                ubicacion = fxComboBoxUbicacion.getSelectionModel().getSelectedItem().toString();
-            }
 
             Categoria cat = (Categoria) fxComboBoxCategoria.getSelectionModel().getSelectedItem();
-            Articulo o = new Articulo(0, fxNombre.getText(), cat.getId_categoria(), "imagenes", fxTextAreaDescripcion.getText(), ubicacion, idEmpleado, Date.valueOf(LocalDate.now()));
+            Articulo o = new Articulo(0, fxNombre.getText(), cat.getId_categoria(), "imagenes", fxTextAreaDescripcion.getText(), ((Ubicacion) fxComboBoxUbicacion.getSelectionModel().getSelectedItem()).getIdubicaciones(), idEmpleado, Date.valueOf(LocalDate.now()));
             int num = sa.añadirArticulo(o);
             if (num > 0) {
                 alert.setAlertType(Alert.AlertType.INFORMATION);

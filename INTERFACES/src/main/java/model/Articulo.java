@@ -18,7 +18,7 @@ public class Articulo {
     private int id_categoria;
     private String imagenes;
     private String descripcion;
-    private String ubicacion;
+    private int idUbicacion;
     private int id_responsable;
     private Date fecha_de_alta;
     private int id_fecha_cambios;
@@ -27,24 +27,24 @@ public class Articulo {
 
     }
 
-    public Articulo(int id_objeto, String nombre, int id_categoria, String imagenes, String descripcion, String ubicacion, int id_responsable, Date fecha_de_alta) {
+    public Articulo(int id_objeto, String nombre, int id_categoria, String imagenes, String descripcion, int ubicacion, int id_responsable, Date fecha_de_alta) {
         this.id_articulo = id_objeto;
         this.nombre = nombre;
         this.id_categoria = id_categoria;
         this.imagenes = imagenes;
         this.descripcion = descripcion;
-        this.ubicacion = ubicacion;
+        this.idUbicacion = ubicacion;
         this.id_responsable = id_responsable;
         this.fecha_de_alta = fecha_de_alta;
     }
 
-    public Articulo(int id_objeto, String nombre, int id_categoria, String imagenes, String descripcion, String ubicacion, int id_responsable, Date fecha_de_alta, int id_fecha_cambios) {
+    public Articulo(int id_objeto, String nombre, int id_categoria, String imagenes, String descripcion, int ubicacion, int id_responsable, Date fecha_de_alta, int id_fecha_cambios) {
         this.id_articulo = id_objeto;
         this.nombre = nombre;
         this.id_categoria = id_categoria;
         this.imagenes = imagenes;
         this.descripcion = descripcion;
-        this.ubicacion = ubicacion;
+        this.idUbicacion = ubicacion;
         this.id_responsable = id_responsable;
         this.fecha_de_alta = fecha_de_alta;
         this.id_fecha_cambios = id_fecha_cambios;
@@ -90,12 +90,12 @@ public class Articulo {
         this.descripcion = descripcion;
     }
 
-    public String getUbicacion() {
-        return ubicacion;
+    public int getUbicacion() {
+        return idUbicacion;
     }
 
-    public void setUbicacion(String ubicacion) {
-        this.ubicacion = ubicacion;
+    public void setUbicacion(int ubicacion) {
+        this.idUbicacion = ubicacion;
     }
 
     public int getId_responsable() {
@@ -115,7 +115,7 @@ public class Articulo {
     }
 
     public String toStringConTodo() {
-        return "Articulo{" + "id_articulo=" + id_articulo + ", nombre=" + nombre + ", id_categoria=" + id_categoria + ", imagenes=" + imagenes + ", descripcion=" + descripcion + ", ubicacion=" + ubicacion + ", id_responsable=" + id_responsable + ", fecha_de_alta=" + fecha_de_alta + ", id_fecha_cambios=" + id_fecha_cambios + '}';
+        return "Articulo{" + "id_articulo=" + id_articulo + ", nombre=" + nombre + ", id_categoria=" + id_categoria + ", imagenes=" + imagenes + ", descripcion=" + descripcion + ", ubicacion=" + idUbicacion + ", id_responsable=" + id_responsable + ", fecha_de_alta=" + fecha_de_alta + ", id_fecha_cambios=" + id_fecha_cambios + '}';
     }
 
     @Override

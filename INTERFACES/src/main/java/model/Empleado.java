@@ -16,7 +16,7 @@ public class Empleado {
     private String nombre;
     private String apellido;
     private int telefono;
-    private String ubicacion;
+    private int idUbicacion;
     private int tipo_empleado;
     private String pass;
     private String email;
@@ -30,13 +30,13 @@ public class Empleado {
         this.pass = contra;
     }
 
-    public Empleado(int id_empleado, String dni, String nombre, String apellido, int telefono, String ubicacion, int tipo_usuario, String pass, String email) {
+    public Empleado(int id_empleado, String dni, String nombre, String apellido, int telefono, int ubicacion, int tipo_usuario, String pass, String email) {
         this.id_empleado = id_empleado;
         this.dni = dni;
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
-        this.ubicacion = ubicacion;
+        this.idUbicacion = ubicacion;
         this.tipo_empleado = tipo_usuario;
         this.pass = pass;
         this.email = email;
@@ -82,12 +82,12 @@ public class Empleado {
         this.telefono = telefono;
     }
 
-    public String getUbicacion() {
-        return ubicacion;
+    public int getUbicacion() {
+        return idUbicacion;
     }
 
-    public void setUbicacion(String ubicacion) {
-        this.ubicacion = ubicacion;
+    public void setUbicacion(int ubicacion) {
+        this.idUbicacion = ubicacion;
     }
 
     public int getTipo_empleado() {
@@ -115,12 +115,12 @@ public class Empleado {
     }
 
     public String toStringConTodo() {
-        return "ID:" + id_empleado + ". DNI: " + dni + ". NOMBRE: " + nombre + ". APELLIDOS: " + apellido + ". TELEFONO " + telefono + ". UBICACIÓN: " + ubicacion + ". TIPO DE USUARIO: " + tipo_empleado;
+        return "ID:" + id_empleado + ". DNI: " + dni + ". NOMBRE: " + nombre + ". APELLIDOS: " + apellido + ". TELEFONO " + telefono + ". UBICACIÓN: " + idUbicacion + ". TIPO DE USUARIO: " + tipo_empleado;
     }
 
     @Override
     public String toString() {
-        return "DNI: " + dni + ". NOMBRE: " + nombre + ". APELLIDOS: " + apellido + ". TELEFONO " + telefono + ". UBICACIÓN: " + ubicacion;
+        return "DNI: " + dni + ". NOMBRE: " + nombre + ". APELLIDOS: " + apellido + ". TELEFONO " + telefono + ". UBICACIÓN: " + idUbicacion;
 
     }
 

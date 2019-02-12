@@ -5,7 +5,9 @@
  */
 package fx.controllers;
 
+import com.google.protobuf.TextFormat;
 import java.net.URL;
+import java.text.ParseException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -17,7 +19,9 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import model.Empleado;
+import model.Ubicacion;
 import servicios.ServiciosEmpleado;
+import servicios.ServiciosUbicacion;
 
 /**
  * FXML Controller class
@@ -51,13 +55,9 @@ public class FXMLPantallaAñadirEmpleadoController implements Initializable {
     }
 
     public void cargarComboBoxUbicacion() {
-        List<String> ubicaciones = new LinkedList();
         fxUbicacion.getItems().clear();
-        ubicaciones.add("Despacho Director");
-        ubicaciones.add("Departamento Marketing");
-        ubicaciones.add("Departamento Contabilidad");
-        ubicaciones.add("Departamento Producción");
-        fxUbicacion.getItems().addAll(ubicaciones);
+        ServiciosUbicacion su = new ServiciosUbicacion();
+        fxUbicacion.getItems().addAll(su.cargarTodasLasUbicaciones());
     }
 
     @FXML
@@ -69,31 +69,40 @@ public class FXMLPantallaAñadirEmpleadoController implements Initializable {
                 || fxContraseña2.getText().equals("") || fxEmail.getText().equals("")) {
             alertError.setContentText("Introduzca todos los datos");
             alertError.showAndWait();
-        } else if (fxContraseña.getText().equals(fxContraseña2.getText())) {
-            String ubicacion = fxUbicacion.getSelectionModel().getSelectedItem().toString();
-            Empleado emp = new Empleado(0, fxDni.getText(), fxNombre.getText(), fxApellidos.getText(), Integer.parseInt(fxTelefono.getText()), ubicacion, 3, fxContraseña.getText(), fxEmail.getText());
-            ServiciosEmpleado sc = new ServiciosEmpleado();
-            int filas = sc.añadirEmpleado(emp);
-            if (filas > 0) {
-                Alert a = new Alert(Alert.AlertType.INFORMATION, "Empleado creado", ButtonType.CLOSE);
-                a.showAndWait();
-                fxDni.clear();
-                fxNombre.clear();
-                fxApellidos.clear();
-                fxTelefono.clear();
-                fxContraseña.clear();
-                fxContraseña2.clear();
-                fxEmail.clear();
+        } else {
+            if (fxContraseña.getText().equals(fxContraseña2.getText())) {
+                try {
+                    int telefono = Integer.parseInt(fxTelefono.getText());
+                    Empleado emp = new Empleado(0, fxDni.getText(), fxNombre.getText(), fxApellidos.getText(), telefono,
+                            ((Ubicacion) fxUbicacion.getSelectionModel().getSelectedItem()).getIdubicaciones(), 3, fxContraseña.getText(), fxEmail.getText());
+                    ServiciosEmpleado sc = new ServiciosEmpleado();
+                    int filas = sc.añadirEmpleado(emp);
+                    if (filas > 0) {
+                        Alert a = new Alert(Alert.AlertType.INFORMATION, "Empleado creado", ButtonType.CLOSE);
+                        a.showAndWait();
+                        fxDni.clear();
+                        fxNombre.clear();
+                        fxApellidos.clear();
+                        fxTelefono.clear();
+                        fxContraseña.clear();
+                        fxContraseña2.clear();
+                        fxEmail.clear();
+
+                    } else {
+                        alertError.setContentText("Ha ocurrido un error");
+                        alertError.showAndWait();
+                    }
+                } catch (NumberFormatException ex) {
+                    alertError.setContentText("El número introducido no es válido");
+                    alertError.showAndWait();
+                }
 
             } else {
-                alertError.setContentText("Ha ocurrido un error");
+                alertError.setContentText("La contraseña no es igual");
                 alertError.showAndWait();
             }
-
-        } else {
-            alertError.setContentText("La contraseña no es igual");
-            alertError.showAndWait();
         }
+
     }
 
     @Override
