@@ -67,30 +67,30 @@ public class FXMLPantallaAñadirArticuloController implements Initializable {
 
     @FXML
     public void cargarComboBoxCategoria() {
-//        fxComboBoxCategoria.getItems().clear();
-//        servicios.ServiciosCategoria sc = new ServiciosCategoria();
-//        List<Categoria> categorias = sc.cargarTodosLasCategorias();
-//        fxComboBoxCategoria.getItems().addAll(categorias);
+        fxComboBoxCategoria.getItems().clear();
+        servicios.ServiciosCategoria sc = new ServiciosCategoria();
+        List<Categoria> categorias = sc.cargarTodosLasCategorias();
+        fxComboBoxCategoria.getItems().addAll(categorias);
 
     }
 
     @FXML
     public void cargarComboBoxResponsable() {
-//        fxComboBoxResponsable.getItems().clear();
-//        ServiciosEmpleado se = new ServiciosEmpleado();
-//        List<Empleado> empl = se.cargarTodosLosEmpleados();
-//        fxComboBoxResponsable.getItems().addAll(empl);
+        fxComboBoxResponsable.getItems().clear();
+        ServiciosEmpleado se = new ServiciosEmpleado();
+        List<Empleado> empl = se.cargarTodosLosEmpleados();
+        fxComboBoxResponsable.getItems().addAll(empl);
     }
 
     @FXML
     public void cargarComboBoxUbicacion() {
-//        fxComboBoxUbicacion.getItems().clear();
-//        List<String> ubicaciones = new LinkedList();
-//        ubicaciones.add("Despacho Director");
-//        ubicaciones.add("Departamento Marketing");
-//        ubicaciones.add("Departamento Contabilidad");
-//        ubicaciones.add("Departamento Producción");
-//        fxComboBoxUbicacion.getItems().addAll(ubicaciones);
+        fxComboBoxUbicacion.getItems().clear();
+        List<String> ubicaciones = new LinkedList();
+        ubicaciones.add("Despacho Director");
+        ubicaciones.add("Departamento Marketing");
+        ubicaciones.add("Departamento Contabilidad");
+        ubicaciones.add("Departamento Producción");
+        fxComboBoxUbicacion.getItems().addAll(ubicaciones);
     }
 
     @FXML
