@@ -106,6 +106,8 @@ public class FXMLPantallaAñadirCategoriaController implements Initializable {
                 c.setId_categoria(filas);
                 Alert a = new Alert(Alert.AlertType.INFORMATION, "Categoria creada", ButtonType.CLOSE);
                 a.showAndWait();
+                fxNombre.clear();
+                fxDescripcion.clear();
                 fxTablaBorrar.getItems().clear();
                 fxCategoria.getItems().add(c);
                 fxCategoria2.getItems().add(c);

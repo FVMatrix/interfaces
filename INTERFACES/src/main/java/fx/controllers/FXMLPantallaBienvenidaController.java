@@ -29,7 +29,8 @@ public class FXMLPantallaBienvenidaController implements Initializable {
     
     
     public void cambiarNombreBienvenida(){
-        fxBienvenida.setText(fxBienvenida.getText()+ " "+inicio.getNombreEmpleado().toUpperCase());
+        String hola="BIENVENIDO A MATRIX AGENTE ";
+        fxBienvenida.setText(hola+inicio.getNombreEmpleado().toUpperCase());
     }
     
     
