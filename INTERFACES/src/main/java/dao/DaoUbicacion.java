@@ -53,6 +53,7 @@ public class DaoUbicacion {
                     new ScalarHandler<>(),
                     u.getNombre_ubicacion());
             filas = id.intValue();
+            u.setIdubicaciones(filas);
         } catch (Exception ex) {
             Logger.getLogger(DaoUbicacion.class.getName()).log(Level.SEVERE, null, ex);
         } finally {

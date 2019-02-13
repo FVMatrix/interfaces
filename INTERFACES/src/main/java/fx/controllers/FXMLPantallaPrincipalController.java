@@ -271,7 +271,7 @@ public class FXMLPantallaPrincipalController implements Initializable {
 
     @FXML
     public void cargarPantallaActualizarEmpleado() {
-        controllerActualizarEmpleado.cargar();
+        controllerActualizarEmpleado.cargarEmpleados();
         fxRoot.setCenter(pantallaActualizarEmpleado);
     }
 
@@ -337,13 +337,12 @@ public class FXMLPantallaPrincipalController implements Initializable {
                 fxMenuEmpleados.setVisible(false);
                 break;
             default:
-                //esto sobra; es un atajo para no estar haciendo el login todo el rato
                 fxMenuCategorias.setVisible(true);
                 fxMenuEmpleados.setVisible(true);
                 fxMenuArticulos.setVisible(true);
         }
         fxMenuBar.setVisible(true);
-        //   controllerBienvenida.cambiarNombreBienvenida();
+        controllerBienvenida.cambiarNombreBienvenida();
         fxRoot.setCenter(pantallaBienvenida);
     }
 

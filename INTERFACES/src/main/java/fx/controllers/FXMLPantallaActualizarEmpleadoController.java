@@ -7,15 +7,12 @@ package fx.controllers;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import model.Empleado;
 import model.Ubicacion;
@@ -42,10 +39,6 @@ public class FXMLPantallaActualizarEmpleadoController implements Initializable {
     @FXML
     private ComboBox fxUbicacion;
     @FXML
-    private PasswordField fxContraseña;
-    @FXML
-    private PasswordField fxContraseña2;
-    @FXML
     private TextField fxEmail;
 
     private Alert alertError;
@@ -61,17 +54,16 @@ public class FXMLPantallaActualizarEmpleadoController implements Initializable {
         fxUbicacion.getItems().addAll(su.cargarTodasLasUbicaciones());
     }
 
-    public void cargar() {
+    public void cargarEmpleados() {
         ServiciosEmpleado sc = new ServiciosEmpleado();
-        fxEmpleado.getItems().clear();
+        fxEmpleado.getItems().clear(); 
         ArrayList<Empleado> empleados = (ArrayList<Empleado>) sc.cargarTodosLosEmpleados();
+        empleados.remove(0);
         fxEmpleado.getItems().addAll(empleados);
         fxDni.clear();
         fxNombre.clear();
         fxApellidos.clear();
         fxTelefono.clear();
-        fxContraseña.clear();
-        fxContraseña2.clear();
         fxEmail.clear();
 
     }
@@ -83,8 +75,6 @@ public class FXMLPantallaActualizarEmpleadoController implements Initializable {
             fxNombre.setText(pulsada.getNombre());
             fxApellidos.setText(pulsada.getApellido());
             fxTelefono.setText(String.valueOf(pulsada.getTelefono()));
-            fxContraseña.setText(pulsada.getPass());
-            fxContraseña2.setText(pulsada.getPass());
             fxEmail.setText(pulsada.getEmail());
         }
     }
@@ -94,18 +84,17 @@ public class FXMLPantallaActualizarEmpleadoController implements Initializable {
         ServiciosEmpleado sc = new ServiciosEmpleado();
         if (fxDni.getText().equals("") || fxNombre.getText().equals("")
                 || fxApellidos.getText().equals("") || fxTelefono.getText().equals("")
-                || fxUbicacion.getSelectionModel().getSelectedItem() == null || fxContraseña.getText().equals("")
-                || fxContraseña2.getText().equals("") || fxEmail.getText().equals("")) {
+                || fxUbicacion.getSelectionModel().getSelectedItem() == null 
+                || fxEmail.getText().equals("")) {
             alertError.setContentText("Introduzca todos los datos");
             alertError.showAndWait();
-        } else if (fxContraseña.getText().equals(fxContraseña2.getText())) {
+        } else {
             Empleado c = (Empleado) fxEmpleado.getSelectionModel().getSelectedItem();
             c.setDni(fxDni.getText());
             c.setNombre(fxNombre.getText());
             c.setApellido(fxApellidos.getText());
             c.setTelefono(Integer.parseInt(fxTelefono.getText()));
             c.setUbicacion(((Ubicacion) fxUbicacion.getSelectionModel().getSelectedItem()).getIdubicaciones());
-            c.setPass(fxContraseña.getText());
             c.setEmail(fxEmail.getText());
 
             int filas = sc.modificarEmpleado(c);
@@ -117,8 +106,6 @@ public class FXMLPantallaActualizarEmpleadoController implements Initializable {
                 fxNombre.clear();
                 fxApellidos.clear();
                 fxTelefono.clear();
-                fxContraseña.clear();
-                fxContraseña2.clear();
                 fxEmail.clear();
                 fxEmpleado.getItems().remove(c);
                 fxEmpleado.getItems().add(c);

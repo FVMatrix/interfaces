@@ -41,6 +41,7 @@ public class DaoArticulos {
                     art.getId_categoria(), art.getNombre(), art.getImagenes(), art.getDescripcion(), art.getUbicacion(), art.getFecha_de_alta(), art.getId_responsable());
             filas = id.intValue();
 
+            art.setId_articulo(filas);
             id = qr.insert(con,
                     "insert into cambios (id_articulo, fecha_cambio,descripcion) values(?,?,?)",
                     new ScalarHandler<>(),

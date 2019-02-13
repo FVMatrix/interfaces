@@ -63,13 +63,13 @@ public class FXMLPantallaLoginController implements Initializable {
                         switch (empleadoRecibido.getTipo_empleado()) {
                             case 1:
                                 inicio.setTipo_usuario(1);
-                                inicio.setNombreEmpleado(empleadoRecibido.getNombre() + "   (ADMIN)");
+                                inicio.setNombreEmpleado(empleadoRecibido.getNombre() + " (ADMIN)");
 
                                 inicio.cargarPantallaBienvenida();
                                 break;
                             case 2:
                                 inicio.setTipo_usuario(2);
-                                inicio.setNombreEmpleado(empleadoRecibido.getNombre() + "   (INVENTARIADOR)");
+                                inicio.setNombreEmpleado(empleadoRecibido.getNombre() + " (INVENTARIADOR)");
 
                                 inicio.cargarPantallaBienvenida();
                                 break;

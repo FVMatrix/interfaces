@@ -5,11 +5,8 @@
  */
 package fx.controllers;
 
-import com.google.protobuf.TextFormat;
 import java.net.URL;
-import java.text.ParseException;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -41,6 +38,8 @@ public class FXMLPantallaAñadirEmpleadoController implements Initializable {
     @FXML
     private ComboBox fxUbicacion;
     @FXML
+    private ComboBox fxComboBoxTipoEmpleado;
+    @FXML
     private PasswordField fxContraseña;
     @FXML
     private PasswordField fxContraseña2;
@@ -60,24 +59,45 @@ public class FXMLPantallaAñadirEmpleadoController implements Initializable {
         fxUbicacion.getItems().addAll(su.cargarTodasLasUbicaciones());
     }
 
+    public void cargarComboBoxTipoEmpleado() {
+        fxComboBoxTipoEmpleado.getItems().add("Admin");
+        fxComboBoxTipoEmpleado.getItems().add("Inventariador");
+        fxComboBoxTipoEmpleado.getItems().add("Normal");
+    }
+
     @FXML
     public void añadirEmpleado() {
 
         if (fxDni.getText().equals("") || fxNombre.getText().equals("")
                 || fxApellidos.getText().equals("") || fxTelefono.getText().equals("")
                 || fxUbicacion.getSelectionModel().getSelectedItem() == null || fxContraseña.getText().equals("")
-                || fxContraseña2.getText().equals("") || fxEmail.getText().equals("")) {
+                || fxContraseña2.getText().equals("") || fxEmail.getText().equals("") || fxComboBoxTipoEmpleado.getSelectionModel().getSelectedItem() == null) {
             alertError.setContentText("Introduzca todos los datos");
             alertError.showAndWait();
         } else {
             if (fxContraseña.getText().equals(fxContraseña2.getText())) {
                 try {
                     int telefono = Integer.parseInt(fxTelefono.getText());
+                    int tipoEmpleado = -1;
+                    switch (fxComboBoxTipoEmpleado.getSelectionModel().getSelectedItem().toString()) {
+                        case "Admin":
+                            tipoEmpleado = 1;
+                            break;
+                        case "Inventariador":
+                            tipoEmpleado = 2;
+                            break;
+                        case "Normal":
+                            tipoEmpleado = 3;
+                            break;
+                        default:
+                            throw new AssertionError();
+                    }
                     Empleado emp = new Empleado(0, fxDni.getText(), fxNombre.getText(), fxApellidos.getText(), telefono,
-                            ((Ubicacion) fxUbicacion.getSelectionModel().getSelectedItem()).getIdubicaciones(), 3, fxContraseña.getText(), fxEmail.getText());
+                            ((Ubicacion) fxUbicacion.getSelectionModel().getSelectedItem()).getIdubicaciones(), tipoEmpleado, fxContraseña.getText(), fxEmail.getText());
                     ServiciosEmpleado sc = new ServiciosEmpleado();
                     int filas = sc.añadirEmpleado(emp);
                     if (filas > 0) {
+                        
                         Alert a = new Alert(Alert.AlertType.INFORMATION, "Empleado creado", ButtonType.CLOSE);
                         a.showAndWait();
                         fxDni.clear();
@@ -108,6 +128,7 @@ public class FXMLPantallaAñadirEmpleadoController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         alertError = new Alert(Alert.AlertType.ERROR);
+        cargarComboBoxTipoEmpleado();
     }
 
 }
