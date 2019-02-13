@@ -32,5 +32,7 @@
             <Font size="24.0" />
          </font>
       </Label>
+      <ComboBox fx:id="fxComboBoxTipoEmpleado" layoutX="571.0" layoutY="431.0" prefHeight="31.0" prefWidth="187.0" />
+      <Label layoutX="433.0" layoutY="436.0" text="Tipo de empleado" />
    </children>
 </AnchorPane>

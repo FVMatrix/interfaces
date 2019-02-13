@@ -36,7 +36,7 @@ public class DaoEmpleados {
                     new ScalarHandler<>(),
                     emp.getNombre(), emp.getApellido(), emp.getTelefono(), emp.getUbicacion(), emp.getTipo_empleado(), emp.getPass(), emp.getEmail(), emp.getDni());
             filas = id.intValue();
-
+            emp.setId_empleado(filas);
         } catch (Exception ex) {
             //SI EL DNI YA EXISTE EN LA BBDD, HAZSELO SABER AL USUARIO
             if (ex.getMessage().contains("UNIQUE KEY constraint")) {

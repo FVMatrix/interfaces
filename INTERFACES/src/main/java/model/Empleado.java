@@ -20,17 +20,17 @@ public class Empleado {
     private int tipo_empleado;
     private String pass;
     private String email;
-    
-    public Empleado(){
-        
+
+    public Empleado() {
+
     }
-    
-    public Empleado(String dni, String contra){
+
+    public Empleado(String dni, String contra) {
         this.dni = dni;
         this.pass = contra;
     }
 
-    public Empleado(int id_empleado, String dni, String nombre, String apellido, int telefono, int ubicacion, int tipo_usuario, String pass, String email) {
+    public Empleado(int id_empleado, String nombre, String apellido, int telefono, int ubicacion, int tipo_usuario, String pass, String email, String dni) {
         this.id_empleado = id_empleado;
         this.dni = dni;
         this.nombre = nombre;

@@ -35,11 +35,6 @@ public class ServiciosCategoria {
         return dc.cargarCategoriaPorID(id);
     }
 
-    public int modificarArticulo(Categoria cat) {
-        dao.DaoCategorias dc = new DaoCategorias();
-        return dc.modificarCategoria(cat);
-    }
-
     public int modificarCategoria(Categoria cat) {
         dao.DaoCategorias dc = new DaoCategorias();
         return dc.modificarCategoria(cat);

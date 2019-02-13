@@ -103,6 +103,7 @@ public class FXMLPantallaAñadirCategoriaController implements Initializable {
             ServiciosCategoria sc = new ServiciosCategoria();
             int filas = sc.añadirCategoria(c);
             if (filas > 0) {
+                c.setId_categoria(filas);
                 Alert a = new Alert(Alert.AlertType.INFORMATION, "Categoria creada", ButtonType.CLOSE);
                 a.showAndWait();
                 fxTablaBorrar.getItems().clear();

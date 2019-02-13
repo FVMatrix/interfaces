@@ -36,11 +36,12 @@ public class DaoArticulos {
             QueryRunner qr = new QueryRunner();
 
             Number id = qr.insert(con,
-                    "insert into articulos (id_categoria, nombre, imagenes, descripcion, ubicacion, fecha_alta, responsable) values(?,?,?,?,?,?,?)",
+                    "insert into articulos (nombre, imagenes, descripcion, ubicacion, fecha_alta, responsable, id_categoria) values(?,?,?,?,?,?,?)",
                     new ScalarHandler<>(),
-                    art.getId_categoria(), art.getNombre(), art.getImagenes(), art.getDescripcion(), art.getUbicacion(), art.getFecha_de_alta(), art.getId_responsable());
+                    art.getNombre(), art.getImagenes(), art.getDescripcion(), art.getUbicacion(), art.getFecha_de_alta(), art.getId_responsable(), art.getId_categoria());
             filas = id.intValue();
 
+            art.setId_articulo(filas);
             id = qr.insert(con,
                     "insert into cambios (id_articulo, fecha_cambio,descripcion) values(?,?,?)",
                     new ScalarHandler<>(),
