@@ -29,7 +29,7 @@ public class FXMLPantallaBienvenidaController implements Initializable {
     
     
     public void cambiarNombreBienvenida(){
-        fxBienvenida.setText(inicio.getNombreEmpleado());
+        fxBienvenida.setText(fxBienvenida.getText()+ " "+inicio.getNombreEmpleado().toUpperCase());
     }
     
     

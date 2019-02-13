@@ -21,6 +21,10 @@ public class FXMLPantallaBorrarCategoriaController implements Initializable {
     public void setInicio(FXMLPantallaPrincipalController inicio) {
         this.inicio = inicio;
     }
+    
+    
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

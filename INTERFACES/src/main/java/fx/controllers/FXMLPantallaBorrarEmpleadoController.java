@@ -59,7 +59,7 @@ public class FXMLPantallaBorrarEmpleadoController implements Initializable {
         fxTableView.getColumns().addAll(dni, nombre, apellidos, telefono, ubicacion);
         nombre.setCellValueFactory(new PropertyValueFactory("nombre"));
         dni.setCellValueFactory(new PropertyValueFactory("dni"));
-        apellidos.setCellValueFactory(new PropertyValueFactory("apellidos"));
+        apellidos.setCellValueFactory(new PropertyValueFactory("apellido"));
         ubicacion.setCellValueFactory(new PropertyValueFactory("ubicacion"));
         telefono.setCellValueFactory(new PropertyValueFactory("telefono"));
         Empleado e = (Empleado) fxComboBox.getSelectionModel().getSelectedItem();

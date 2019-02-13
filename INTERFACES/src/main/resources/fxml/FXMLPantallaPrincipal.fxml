@@ -31,7 +31,7 @@
                 </Menu>
                 <Menu fx:id="fxMenuCategorias" mnemonicParsing="false" text="Categorias">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#cargarPantallaAñadirCategoria" text="Añadir" />
+                        <MenuItem mnemonicParsing="false" onAction="#cargarPantallaAñadirCategoria" text="Gestionar categorías" />
                         <MenuItem fx:id="fxMenuItemActualizarCategoria" mnemonicParsing="false" onAction="#cargarPantallaActualizarCategoria" text="Actualizar" />
                         <MenuItem fx:id="fxMenuItemBorrarCategoria" mnemonicParsing="false" onAction="#cargarPantallaBorrarCategoria" text="Borrar" />
                     </items>
