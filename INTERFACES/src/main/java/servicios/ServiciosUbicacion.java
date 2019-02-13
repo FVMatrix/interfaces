@@ -18,4 +18,24 @@ public class ServiciosUbicacion {
         DaoUbicacion du = new DaoUbicacion();
         return du.cargarTodasLasUbicaciones();
     }
+    
+     public int añadirUbicacion(Ubicacion u) {
+        DaoUbicacion du = new DaoUbicacion();
+        return du.añadirUbicacion(u);
+    }
+
+    public int borrarUbicacion(Ubicacion u) {
+      DaoUbicacion du = new DaoUbicacion();
+        return du.borrarUbicacion(u);
+    }
+
+    public Ubicacion cargarUbicacionPorID(int id) {
+        DaoUbicacion du = new DaoUbicacion();
+        return du.cargarUbicacionPorID(id);
+    }
+
+    public int modificarUbicacion(Ubicacion u) {
+        DaoUbicacion du = new DaoUbicacion();
+        return du.modificarUbicacion(u);
+    }
 }

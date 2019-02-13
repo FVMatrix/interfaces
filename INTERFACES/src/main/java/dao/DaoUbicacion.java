@@ -41,7 +41,7 @@ public class DaoUbicacion {
         return lista;
     }
 
-    public int añadirCategoria(Ubicacion u) {
+    public int añadirUbicacion(Ubicacion u) {
         int filas = -1;
         DBConnection db = new DBConnection();
         Connection con = null;
@@ -49,10 +49,11 @@ public class DaoUbicacion {
             con = db.getConnection();
             QueryRunner qr = new QueryRunner();
             Number id = qr.insert(con,
-                    "insert into ubicaciones (nombre_ubicacion) values(?)",
+                    "insert into ubicaciones (nombre_ubicacion,descripcion) values(?,?)",
                     new ScalarHandler<>(),
-                    u.getNombre_ubicacion());
+                    u.getNombre_ubicacion(),u.getDescripcion());
             filas = id.intValue();
+            u.setIdubicaciones(filas);
         } catch (Exception ex) {
             Logger.getLogger(DaoUbicacion.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -61,7 +62,7 @@ public class DaoUbicacion {
         return filas;
     }
 
-    public int borrarCategoria(Ubicacion u) {
+    public int borrarUbicacion(Ubicacion u) {
         int filas = -1;
         DBConnection db = new DBConnection();
         Connection con = null;
@@ -85,7 +86,7 @@ public class DaoUbicacion {
         return filas;
     }
 
-    public Ubicacion cargarCategoriaPorID(int id) {
+    public Ubicacion cargarUbicacionPorID(int id) {
         Ubicacion cat = new Ubicacion();
         DBConnection db = new DBConnection();
         Connection con = null;
@@ -103,7 +104,7 @@ public class DaoUbicacion {
         return cat;
     }
 
-    public int modificarCategoria(Ubicacion u) {
+    public int modificarUbicacion(Ubicacion u) {
         int filas = -1;
         Connection con = null;
         DBConnection db = new DBConnection();
@@ -114,8 +115,8 @@ public class DaoUbicacion {
             QueryRunner qr = new QueryRunner();
 
             filas = qr.update(con,
-                    "UPDATE ubicaciones SET nombre_ubicacion = ? WHERE idubicaciones = ?",
-                    u.getNombre_ubicacion(), u.getIdubicaciones());
+                    "UPDATE ubicaciones SET nombre_ubicacion = ?, descripcion = ? WHERE idubicaciones = ?",
+                    u.getNombre_ubicacion(),u.getDescripcion(), u.getIdubicaciones());
 
         } catch (Exception ex) {
             Logger.getLogger(DaoUbicacion.class.getName()).log(Level.SEVERE, null, ex);

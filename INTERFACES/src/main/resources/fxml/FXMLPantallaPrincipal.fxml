@@ -32,10 +32,13 @@
                 <Menu fx:id="fxMenuCategorias" mnemonicParsing="false" text="Categorias">
                     <items>
                         <MenuItem mnemonicParsing="false" onAction="#cargarPantallaAñadirCategoria" text="Añadir" />
-                        <MenuItem fx:id="fxMenuItemActualizarCategoria" mnemonicParsing="false" onAction="#cargarPantallaActualizarCategoria" text="Actualizar" />
-                        <MenuItem fx:id="fxMenuItemBorrarCategoria" mnemonicParsing="false" onAction="#cargarPantallaBorrarCategoria" text="Borrar" />
                     </items>
                 </Menu>
+            <Menu fx:id="fxMenuUbicaciones" mnemonicParsing="false" text="Ubicaciones">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#cargarPantallaGestionarUbicacion" text="Gestionar Ubicaciones" />
+              </items>
+            </Menu>
             </menus>
         </MenuBar>
     </top>

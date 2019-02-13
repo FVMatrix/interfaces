@@ -12,14 +12,18 @@ package model;
 public class Ubicacion {
     private int idubicaciones;
     private String nombre_ubicacion;
+    private String descripcion;
 
     public Ubicacion() {
     }
 
-    public Ubicacion(int idubicaciones, String nombre_ubicacion) {
+    public Ubicacion(int idubicaciones, String nombre_ubicacion, String descripcion) {
         this.idubicaciones = idubicaciones;
         this.nombre_ubicacion = nombre_ubicacion;
+        this.descripcion = descripcion;
     }
+
+   
 
     public int getIdubicaciones() {
         return idubicaciones;
@@ -36,6 +40,16 @@ public class Ubicacion {
     public void setNombre_ubicacion(String nombre_ubicacion) {
         this.nombre_ubicacion = nombre_ubicacion;
     }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+    
+    
 
     @Override
     public String toString() {
