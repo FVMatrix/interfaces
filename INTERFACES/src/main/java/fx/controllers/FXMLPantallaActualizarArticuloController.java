@@ -36,7 +36,9 @@ public class FXMLPantallaActualizarArticuloController implements Initializable {
     public void setInicio(FXMLPantallaPrincipalController inicio) {
         this.inicio = inicio;
     }
-
+    private List<Categoria> cat;
+    private List<Empleado> empl;
+    private List<Ubicacion> ubicaciones;
     @FXML
     private ComboBox fxComboBoxArticulo;
 
@@ -59,31 +61,75 @@ public class FXMLPantallaActualizarArticuloController implements Initializable {
         fxComboBoxArticulo.getItems().addAll(art);
     }
 
-    
+    //  Articulo a = new Articulo();
+//        fxComboBoxUbicacion.getSelectionModel().select(a);
     public void cargarCampos() {
         Articulo a = (Articulo) fxComboBoxArticulo.getSelectionModel().getSelectedItem();
         fxNombre.setText(a.getNombre());
         fxDescripcion.setText(a.getDescripcion());
+        fxComboBoxUbicacion.getSelectionModel().select(devuelveUbicacionDelArticuloSeleccionado(a));
+        fxComboBoxCategoria.getSelectionModel().select(devuelveCategoriaDelArticuloSeleccionado(a));
+        fxComboBoxResponsable.getSelectionModel().select(devuelveEmpleadoDelArticuloSeleccionado(a));
+    }
+
+    public Categoria devuelveCategoriaDelArticuloSeleccionado(Articulo a) {
+        Categoria cats = null;
+        boolean salir = false;
+        for (int i = 0; i < cat.size() && !salir; i++) {
+            if (cat.get(i).getId_categoria() == a.getId_categoria()) {
+                cats = cat.get(i);
+                salir = true;
+            }
+        }
+        return cats;
+    }
+
+    public Ubicacion devuelveUbicacionDelArticuloSeleccionado(Articulo a) {
+        Ubicacion ub = null;
+        boolean salir = false;
+        for (int i = 0; i < ubicaciones.size() && !salir; i++) {
+            if (ubicaciones.get(i).getIdubicaciones() == a.getUbicacion()) {
+                ub = ubicaciones.get(i);
+                salir = true;
+            }
+        }
+        return ub;
+    }
+
+    public Empleado devuelveEmpleadoDelArticuloSeleccionado(Articulo a) {
+        Empleado em = null;
+        boolean salir = false;
+        for (int i = 0; i < empl.size() && !salir; i++) {
+            if (empl.get(i).getId_empleado() == a.getId_responsable()) {
+                em = empl.get(i);
+                salir = true;
+            }
+        }
+        return em;
     }
 
     public void cargarComboCategoria() {
+        cat = new LinkedList<>();
         fxComboBoxCategoria.getItems().clear();
         ServiciosCategoria sc = new ServiciosCategoria();
-        List<Categoria> cat = sc.cargarTodosLasCategorias();
+        cat.addAll(sc.cargarTodosLasCategorias());
         fxComboBoxCategoria.getItems().addAll(cat);
     }
 
     public void cargarComboResponsable() {
+        empl = new LinkedList<>();
         fxComboBoxResponsable.getItems().clear();
         servicios.ServiciosEmpleado se = new ServiciosEmpleado();
-        List<Empleado> empl = se.cargarTodosLosEmpleados();
+        empl.addAll(se.cargarTodosLosEmpleados());
         fxComboBoxResponsable.getItems().addAll(empl);
     }
 
     public void cargarComboUbicacion() {
+        ubicaciones = new LinkedList<>();
         fxComboBoxUbicacion.getItems().clear();
         ServiciosUbicacion su = new ServiciosUbicacion();
-        fxComboBoxUbicacion.getItems().addAll(su.cargarTodasLasUbicaciones());
+        ubicaciones.addAll(su.cargarTodasLasUbicaciones());
+        fxComboBoxUbicacion.getItems().addAll(ubicaciones);
     }
 
     public void limpiarCampos() {

@@ -73,8 +73,8 @@ public class FXMLPantallaAñadirEmpleadoController implements Initializable {
             if (fxContraseña.getText().equals(fxContraseña2.getText())) {
                 try {
                     int telefono = Integer.parseInt(fxTelefono.getText());
-                    Empleado emp = new Empleado(0, fxDni.getText(), fxNombre.getText(), fxApellidos.getText(), telefono,
-                            ((Ubicacion) fxUbicacion.getSelectionModel().getSelectedItem()).getIdubicaciones(), 3, fxContraseña.getText(), fxEmail.getText());
+                    Empleado emp = new Empleado(0, fxNombre.getText(), fxApellidos.getText(), telefono,
+                            ((Ubicacion) fxUbicacion.getSelectionModel().getSelectedItem()).getIdubicaciones(), 3, fxContraseña.getText(), fxEmail.getText(), fxDni.getText());
                     ServiciosEmpleado sc = new ServiciosEmpleado();
                     int filas = sc.añadirEmpleado(emp);
                     if (filas > 0) {

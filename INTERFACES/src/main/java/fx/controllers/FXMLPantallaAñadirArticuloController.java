@@ -98,7 +98,7 @@ public class FXMLPantallaAñadirArticuloController implements Initializable {
         alert.setTitle(null);
         alert.setHeaderText(null);
         if (!fxNombre.getText().equals("") && fxComboBoxCategoria.getSelectionModel().getSelectedItem() != null && !fxTextAreaDescripcion.getText().equals("")) {
-            Empleado u = null;
+            Empleado u = new Empleado();
             int idEmpleado = 0;
             if (fxComboBoxResponsable.getSelectionModel().getSelectedItem() != null) {
                 u = (Empleado) fxComboBoxResponsable.getSelectionModel().getSelectedItem();
@@ -106,7 +106,7 @@ public class FXMLPantallaAñadirArticuloController implements Initializable {
             }
 
             Categoria cat = (Categoria) fxComboBoxCategoria.getSelectionModel().getSelectedItem();
-            Articulo o = new Articulo(0, fxNombre.getText(), cat.getId_categoria(), "imagenes", fxTextAreaDescripcion.getText(), ((Ubicacion) fxComboBoxUbicacion.getSelectionModel().getSelectedItem()).getIdubicaciones(), idEmpleado, Date.valueOf(LocalDate.now()));
+            Articulo o = new Articulo(0, fxNombre.getText(), "imagenes", fxTextAreaDescripcion.getText(), ((Ubicacion) fxComboBoxUbicacion.getSelectionModel().getSelectedItem()).getIdubicaciones(), Date.valueOf(LocalDate.now()), idEmpleado, cat.getId_categoria());
             int num = sa.añadirArticulo(o);
             if (num > 0) {
                 alert.setAlertType(Alert.AlertType.INFORMATION);
