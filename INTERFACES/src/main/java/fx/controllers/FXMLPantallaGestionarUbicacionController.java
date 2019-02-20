@@ -65,6 +65,8 @@ public class FXMLPantallaGestionarUbicacionController implements Initializable {
         ArrayList<Ubicacion> ubicaciones = (ArrayList<Ubicacion>) sc.cargarTodasLasUbicaciones();
         fxUbicacionActualizar.getItems().addAll(ubicaciones);
         fxUbicacionBorrar.getItems().addAll(ubicaciones);
+         fxUbicacionBorrar.getSelectionModel().clearSelection();
+        fxUbicacionActualizar.getSelectionModel().clearSelection();
 
     }
     

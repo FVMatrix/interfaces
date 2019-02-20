@@ -112,7 +112,6 @@ public class FXMLPantallaGestionarCategoriaController implements Initializable {
                 cargar();
 //                fxCategoria.getItems().add(c);
 //                fxCategoria2.getItems().add(c);
-               
 
             } else {
                 switch (filas) {
@@ -153,6 +152,7 @@ public class FXMLPantallaGestionarCategoriaController implements Initializable {
                 fxCategoria.getItems().remove(c);
                 fxCategoria2.getItems().add(c);
                 fxCategoria.getItems().add(c);
+                fxCategoria.getSelectionModel().clearSelection();
 
             } else {
                 switch (filas) {
@@ -190,6 +190,7 @@ public class FXMLPantallaGestionarCategoriaController implements Initializable {
                 fxDescripcionNuevo.clear();
                 fxCategoria2.getItems().remove(c);
                 fxCategoria.getItems().remove(c);
+                fxCategoria2.getSelectionModel().clearSelection();
                 limpiarTabla();
 
             } else if (filas == -2) {

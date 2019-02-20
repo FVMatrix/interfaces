@@ -134,6 +134,8 @@ public class FXMLPantallaAñadirEmpleadoController implements Initializable {
         fxTelefono.clear();
         fxContraseña.clear();
         fxContraseña2.clear();
+        fxComboBoxTipoEmpleado.getSelectionModel().clearSelection();
+        fxUbicacion.getSelectionModel().clearSelection();
         fxEmail.clear();
     }
 

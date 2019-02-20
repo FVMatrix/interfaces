@@ -77,6 +77,11 @@ public class FXMLPantallaActualizarEmpleadoController implements Initializable {
             fxApellidos.setText(pulsada.getApellido());
             fxTelefono.setText(String.valueOf(pulsada.getTelefono()));
             fxEmail.setText(pulsada.getEmail());
+            for (int i = 0; i < fxUbicacion.getItems().size(); i++) {
+                if(fxUbicacion.getItems().get(i).equals(pulsada.getUbicacion())){
+                    fxUbicacion.getSelectionModel().select(fxUbicacion.getItems().get(i));
+                }
+            }
         }
     }
 
@@ -152,6 +157,8 @@ public class FXMLPantallaActualizarEmpleadoController implements Initializable {
         fxApellidos.clear();
         fxTelefono.clear();
         fxEmail.clear();
+        fxUbicacion.getSelectionModel().clearSelection();
+        fxEmpleado.getSelectionModel().clearSelection();
         fxEmpleado.getItems().remove(emp);
         fxEmpleado.getItems().add(añadir);
     }
