@@ -55,6 +55,9 @@ public class DaoUbicacion {
             filas = id.intValue();
             u.setIdubicaciones(filas);
         } catch (Exception ex) {
+            if (ex.getMessage().contains("UNIQUE KEY constraint")) {
+                filas = -2;
+            }
             Logger.getLogger(DaoUbicacion.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             db.cerrarConexion(con);
@@ -119,6 +122,9 @@ public class DaoUbicacion {
                     u.getNombre_ubicacion(),u.getDescripcion(), u.getIdubicaciones());
 
         } catch (Exception ex) {
+            if (ex.getMessage().contains("UNIQUE KEY constraint")) {
+                filas = -2;
+            }
             Logger.getLogger(DaoUbicacion.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             db.cerrarConexion(con);

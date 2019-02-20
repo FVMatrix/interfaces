@@ -26,7 +26,7 @@ import servicios.ServiciosCategoria;
  *
  * @author mykha
  */
-public class FXMLPantallaAñadirCategoriaController implements Initializable {
+public class FXMLPantallaGestionarCategoriaController implements Initializable {
 
     @FXML
     private TextField fxNombre;
@@ -109,12 +109,24 @@ public class FXMLPantallaAñadirCategoriaController implements Initializable {
                 fxNombre.clear();
                 fxDescripcion.clear();
                 fxTablaBorrar.getItems().clear();
-                fxCategoria.getItems().add(c);
-                fxCategoria2.getItems().add(c);
+                cargar();
+//                fxCategoria.getItems().add(c);
+//                fxCategoria2.getItems().add(c);
+               
 
             } else {
-                alertError.setContentText("Ha ocurrido un error");
-                alertError.showAndWait();
+                switch (filas) {
+                    case -1:
+                        alertError.setContentText("Ha ocurrido un error en BBDD");
+                        alertError.showAndWait();
+                        break;
+                    case -2:
+                        alertError.setContentText("La categoría que quiere añadir ya existe en la BBDD.");
+                        alertError.showAndWait();
+                        break;
+                    default:
+                        throw new AssertionError();
+                }
             }
 
         }
@@ -143,8 +155,19 @@ public class FXMLPantallaAñadirCategoriaController implements Initializable {
                 fxCategoria.getItems().add(c);
 
             } else {
-                alertError.setContentText("Ha ocurrido un error");
-                alertError.showAndWait();
+                switch (filas) {
+                    case -1:
+                        alertError.setContentText("Ha ocurrido un error en BBDD");
+                        alertError.showAndWait();
+                        break;
+                    case -2:
+                        alertError.setContentText("La nueva información que le quiere atribuir a esta categoría ya existe en la BBDD.");
+                        alertError.showAndWait();
+                        break;
+                    default:
+                        throw new AssertionError();
+                }
+
             }
         }
     }
@@ -170,7 +193,7 @@ public class FXMLPantallaAñadirCategoriaController implements Initializable {
                 limpiarTabla();
 
             } else if (filas == -2) {
-                alertError.setContentText("No se puede borrar esta categoria");
+                alertError.setContentText("No se puede borrar esta categoria porque tiene información relacionada.");
                 alertError.showAndWait();
             } else {
                 alertError.setContentText("Ha ocurrido un error");

@@ -6,11 +6,11 @@
 package fx.controllers;
 
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -82,16 +82,25 @@ public class FXMLPantallaBorrarEmpleadoController implements Initializable {
             Empleado e = (Empleado) fxComboBox.getSelectionModel().getSelectedItem();
             if (!e.getDni().equals("root")) {
                 int num = se.borrarEmpleado(e);
+
                 if (num > 0) {
                     limpiarTabla();
-                    fxComboBox.getItems().remove(e);
-                    alert.setContentText("Se ha borrado correctamente");
-                    alert.showAndWait();
+                    Alert a = new Alert(Alert.AlertType.INFORMATION, "Empleado borrado", ButtonType.CLOSE);
+                    a.showAndWait();
                     fxComboBox.getItems().remove(e);
                 } else {
-
-                    alert.setContentText("Ha ocurrido un error");
-                    alert.showAndWait();
+                    switch (num) {
+                        case -1:
+                            alert.setContentText("Ha ocurrido un error al intentar borrar, pruebe más tarde.");
+                            alert.showAndWait();
+                            break;
+                        case -2:
+                            alert.setContentText("Este empleado tiene información relacionada, por tanto, no se puede borrar.");
+                            alert.showAndWait();
+                            break;
+                        default:
+                            throw new AssertionError();
+                    }
                 }
             } else {
                 alert.setContentText("No se puede borrar al administrador ROOT");
@@ -99,7 +108,6 @@ public class FXMLPantallaBorrarEmpleadoController implements Initializable {
             }
 
         } else {
-            alert.setAlertType(Alert.AlertType.ERROR);
             alert.setContentText("Debe seleccionar a un empleado");
             alert.showAndWait();
         }

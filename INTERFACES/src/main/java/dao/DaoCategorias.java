@@ -55,6 +55,9 @@ public class DaoCategorias {
                     cat.getNombre(), cat.getDescripcion());
             filas = id.intValue();
         } catch (Exception ex) {
+            if (ex.getMessage().contains("UNIQUE KEY constraint")) {
+                filas = -2;
+            }
             Logger.getLogger(DaoCategorias.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             db.cerrarConexion(con);
@@ -119,6 +122,9 @@ public class DaoCategorias {
                     cat.getNombre(), cat.getDescripcion(), cat.getId_categoria());
 
         } catch (Exception ex) {
+            if (ex.getMessage().contains("UNIQUE KEY constraint")) {
+                filas = -2;
+            }
             Logger.getLogger(DaoCategorias.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             db.cerrarConexion(con);

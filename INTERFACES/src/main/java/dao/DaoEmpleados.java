@@ -95,6 +95,7 @@ public class DaoEmpleados {
                 }
             } catch (SQLException ex1) {
                 Logger.getLogger(DaoEmpleados.class.getName()).log(Level.SEVERE, null, ex1);
+                filas = -2;
             }
             Logger.getLogger(DaoEmpleados.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -154,6 +155,9 @@ public class DaoEmpleados {
                     emp.getNombre(), emp.getApellido(), emp.getTelefono(), emp.getUbicacion(), emp.getPass(), emp.getEmail(), emp.getDni(), emp.getId_empleado());
 
         } catch (Exception ex) {
+            if (ex.getMessage().contains("UNIQUE KEY constraint")) {
+                filas = -2;
+            }
             Logger.getLogger(DaoArticulos.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             db.cerrarConexion(con);

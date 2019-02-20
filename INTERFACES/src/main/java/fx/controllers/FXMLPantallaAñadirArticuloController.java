@@ -98,24 +98,42 @@ public class FXMLPantallaAñadirArticuloController implements Initializable {
         alert.setTitle(null);
         alert.setHeaderText(null);
         if (!fxNombre.getText().equals("") && fxComboBoxCategoria.getSelectionModel().getSelectedItem() != null && !fxTextAreaDescripcion.getText().equals("")) {
-            Empleado u = new Empleado();
-            int idEmpleado = 0;
-            if (fxComboBoxResponsable.getSelectionModel().getSelectedItem() != null) {
-                u = (Empleado) fxComboBoxResponsable.getSelectionModel().getSelectedItem();
-                idEmpleado = u.getId_empleado();
-            }
 
             Categoria cat = (Categoria) fxComboBoxCategoria.getSelectionModel().getSelectedItem();
-            Articulo o = new Articulo(0, fxNombre.getText(), "imagenes", fxTextAreaDescripcion.getText(), ((Ubicacion) fxComboBoxUbicacion.getSelectionModel().getSelectedItem()).getIdubicaciones(), Date.valueOf(LocalDate.now()), idEmpleado, cat.getId_categoria());
-            int num = sa.añadirArticulo(o);
+            Articulo articuloAñadir = new Articulo(fxNombre.getText(), cat.getId_categoria(), fxTextAreaDescripcion.getText(),Date.valueOf(LocalDate.now()));
+            
+            //MISHA AQUI COMPRUEBAS LO DE LAS IMAGENES A TU MANERA
+            
+            articuloAñadir.setImagenes("imagenes");
+            
+            
+            
+            if (null != fxComboBoxUbicacion.getSelectionModel().getSelectedItem()) {
+                articuloAñadir.setUbicacion(((Ubicacion) fxComboBoxUbicacion.getSelectionModel().getSelectedItem()).getIdubicaciones());
+            }
+            if (null != fxComboBoxResponsable.getSelectionModel().getSelectedItem()) {
+                articuloAñadir.setId_responsable(((Empleado) fxComboBoxResponsable.getSelectionModel().getSelectedItem()).getId_empleado());
+            }
+
+            int num = sa.añadirArticulo(articuloAñadir);
             if (num > 0) {
                 alert.setAlertType(Alert.AlertType.INFORMATION);
-                alert.setContentText("Se ha añadido correctamente");
+                alert.setContentText("Se ha añadido el artículo correctamente");
                 alert.showAndWait();
             } else {
                 alert.setAlertType(Alert.AlertType.ERROR);
-                alert.setContentText("No se ha podido añadir");
-                alert.showAndWait();
+                switch (num) {
+                    case -1:
+                        alert.setContentText("Ha ocurrido un error en BBDD");
+                        alert.showAndWait();
+                        break;
+                    case -2:
+                        alert.setContentText("Este artículo ya existe en la BBDD.");
+                        alert.showAndWait();
+                        break;
+                    default:
+                        throw new AssertionError();
+                }
             }
 
         } else {
@@ -123,6 +141,10 @@ public class FXMLPantallaAñadirArticuloController implements Initializable {
             alert.setContentText("Debe Rellenar los campos obligatorios");
             alert.showAndWait();
         }
+    }
+    
+    public void limpiarCampos(){
+        //HOLA SOY UN MÉTODO QUE QUIERE SER RELLENADO
     }
 
 //    private byte[] loadImageData(Image image) {

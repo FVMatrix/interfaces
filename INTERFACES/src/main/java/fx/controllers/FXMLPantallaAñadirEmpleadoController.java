@@ -6,7 +6,6 @@
 package fx.controllers;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,6 +18,7 @@ import model.Empleado;
 import model.Ubicacion;
 import servicios.ServiciosEmpleado;
 import servicios.ServiciosUbicacion;
+import util.Utilidades;
 
 /**
  * FXML Controller class
@@ -65,6 +65,24 @@ public class FXMLPantallaAñadirEmpleadoController implements Initializable {
         fxComboBoxTipoEmpleado.getItems().add("Normal");
     }
 
+    public int tipoDeEmpleado() {
+        int tipoEmpleado = -1;
+        switch (fxComboBoxTipoEmpleado.getSelectionModel().getSelectedItem().toString()) {
+            case "Admin":
+                tipoEmpleado = 1;
+                break;
+            case "Inventariador":
+                tipoEmpleado = 2;
+                break;
+            case "Normal":
+                tipoEmpleado = 3;
+                break;
+            default:
+                throw new AssertionError();
+        }
+        return tipoEmpleado;
+    }
+
     @FXML
     public void añadirEmpleado() {
 
@@ -76,55 +94,47 @@ public class FXMLPantallaAñadirEmpleadoController implements Initializable {
             alertError.showAndWait();
         } else {
             if (fxContraseña.getText().equals(fxContraseña2.getText())) {
-                try {
-                    int telefono = Integer.parseInt(fxTelefono.getText());
+                    String correo = fxEmail.getText();
+                    String DNI = fxDni.getText();
+                    String telefono = fxTelefono.getText();
+                    Utilidades utilidades = new Utilidades();
+                    if (utilidades.controlarCampoTelefono(telefono) == 1 && utilidades.controlarCampoDNI(DNI) == 1 && utilidades.comprobarCorreo(correo) == 1) {
+                        int tipoEmpleado = tipoDeEmpleado();
+                        int numeroTelefono = Integer.parseInt(telefono);
+                        Empleado emp = new Empleado(0, fxNombre.getText(), fxApellidos.getText(), numeroTelefono,
+                                ((Ubicacion) fxUbicacion.getSelectionModel().getSelectedItem()).getIdubicaciones(), tipoEmpleado, fxContraseña.getText(), correo, DNI);
 
-                    int tipoEmpleado = -1;
-                    switch (fxComboBoxTipoEmpleado.getSelectionModel().getSelectedItem().toString()) {
-                        case "Admin":
-                            tipoEmpleado = 1;
-                            break;
-                        case "Inventariador":
-                            tipoEmpleado = 2;
-                            break;
-                        case "Normal":
-                            tipoEmpleado = 3;
-                            break;
-                        default:
-                            throw new AssertionError();
-                    }
-                    Empleado emp = new Empleado(0, fxNombre.getText(), fxApellidos.getText(), telefono,
-                            ((Ubicacion) fxUbicacion.getSelectionModel().getSelectedItem()).getIdubicaciones(), tipoEmpleado, fxContraseña.getText(), fxEmail.getText(), fxDni.getText());
-
-                    ServiciosEmpleado sc = new ServiciosEmpleado();
-                    int filas = sc.añadirEmpleado(emp);
-                    if (filas > 0) {
-
-                        Alert a = new Alert(Alert.AlertType.INFORMATION, "Empleado creado", ButtonType.CLOSE);
-                        a.showAndWait();
-                        fxDni.clear();
-                        fxNombre.clear();
-                        fxApellidos.clear();
-                        fxTelefono.clear();
-                        fxContraseña.clear();
-                        fxContraseña2.clear();
-                        fxEmail.clear();
+                        ServiciosEmpleado sc = new ServiciosEmpleado();
+                        int filas = sc.añadirEmpleado(emp);
+                        if (filas > 0) {
+                            Alert a = new Alert(Alert.AlertType.INFORMATION, "Empleado creado", ButtonType.CLOSE);
+                            a.showAndWait();
+                            limpiarValores();
+                        }else{
+                            alertError.setContentText("El usuario ya existe en la base de datos.");
+                        alertError.showAndWait();
+                        }
 
                     } else {
-                        alertError.setContentText("Ha ocurrido un error");
+                        alertError.setContentText("El formato del Email, el teléfono o el DNI es incorrecto, por favor reviselo y vuelva a intentarlo de nuevo.");
                         alertError.showAndWait();
                     }
-                } catch (NumberFormatException ex) {
-                    alertError.setContentText("El número introducido no es válido");
-                    alertError.showAndWait();
-                }
-
             } else {
-                alertError.setContentText("La contraseña no es igual");
+                alertError.setContentText("La contraseña no es igual.");
                 alertError.showAndWait();
             }
         }
 
+    }
+
+    public void limpiarValores() {
+        fxDni.clear();
+        fxNombre.clear();
+        fxApellidos.clear();
+        fxTelefono.clear();
+        fxContraseña.clear();
+        fxContraseña2.clear();
+        fxEmail.clear();
     }
 
     @Override

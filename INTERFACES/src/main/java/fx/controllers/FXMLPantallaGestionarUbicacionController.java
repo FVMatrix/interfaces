@@ -111,8 +111,18 @@ public class FXMLPantallaGestionarUbicacionController implements Initializable {
                 fxUbicacionBorrar.getItems().add(c);
 
             } else {
-                alertError.setContentText("Ha ocurrido un error");
-                alertError.showAndWait();
+                switch (filas) {
+                    case -1:
+                        alertError.setContentText("Ha ocurrido un error en BBDD");
+                        alertError.showAndWait();
+                        break;
+                    case -2:
+                        alertError.setContentText("Esta ubicación ya existe en la BBDD.");
+                        alertError.showAndWait();
+                        break;
+                    default:
+                        throw new AssertionError();
+                }
             }
 
         }
@@ -134,14 +144,25 @@ public class FXMLPantallaGestionarUbicacionController implements Initializable {
                 aa.showAndWait();
                 fxNombreNuevo.clear();
                 fxDescripcionNuevo.clear();
-                fxUbicacionBorrar.getItems().remove(u);
-                fxUbicacionActualizar.getItems().remove(u);
-                fxUbicacionBorrar.getItems().add(u);
-                fxUbicacionActualizar.getItems().add(u);
+                cargar();
+//                fxUbicacionBorrar.getItems().remove(u);
+//                fxUbicacionActualizar.getItems().remove(u);
+//                fxUbicacionBorrar.getItems().add(u);
+//                fxUbicacionActualizar.getItems().add(u);
 
             } else {
-                alertError.setContentText("Ha ocurrido un error");
-                alertError.showAndWait();
+                switch (filas) {
+                    case -1:
+                        alertError.setContentText("Ha ocurrido un error en BBDD");
+                        alertError.showAndWait();
+                        break;
+                    case -2:
+                        alertError.setContentText("Los datos que quiere introducir en esta ubicación ya existen en la BBDD.");
+                        alertError.showAndWait();
+                        break;
+                    default:
+                        throw new AssertionError();
+                }
             }
         }
     }
@@ -166,7 +187,7 @@ public class FXMLPantallaGestionarUbicacionController implements Initializable {
                 limpiarTabla();
 
             } else if (filas == -2) {
-                alertError.setContentText("No se puede borrar esta Ubicacion");
+                alertError.setContentText("No se puede borrar esta Ubicacion porque tiene información relacionada");
                 alertError.showAndWait();
             } else {
                 alertError.setContentText("Ha ocurrido un error");

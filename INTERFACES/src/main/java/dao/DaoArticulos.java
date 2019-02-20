@@ -42,6 +42,7 @@ public class DaoArticulos {
             filas = id.intValue();
 
             art.setId_articulo(filas);
+            
             id = qr.insert(con,
                     "insert into cambios (id_articulo, fecha_cambio,descripcion) values(?,?,?)",
                     new ScalarHandler<>(),
@@ -55,7 +56,13 @@ public class DaoArticulos {
                     con.rollback();
                 }
             } catch (SQLException ex1) {
+                if (ex.getMessage().contains("UNIQUE KEY constraint")) {
+                    filas = -2;
+                }
                 Logger.getLogger(DaoArticulos.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+            if (ex.getMessage().contains("UNIQUE KEY constraint")) {
+                filas = -2;
             }
             Logger.getLogger(DaoArticulos.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -167,8 +174,15 @@ public class DaoArticulos {
                 if (con != null) {
                     con.rollback();
                 }
+
             } catch (SQLException ex1) {
+                if (ex.getMessage().contains("UNIQUE KEY constraint")) {
+                    filas = -2;
+                }
                 Logger.getLogger(DaoArticulos.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+            if (ex.getMessage().contains("UNIQUE KEY constraint")) {
+                filas = -2;
             }
             Logger.getLogger(DaoArticulos.class.getName()).log(Level.SEVERE, null, ex);
         } finally {

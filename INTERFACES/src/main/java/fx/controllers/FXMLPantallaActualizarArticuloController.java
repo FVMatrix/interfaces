@@ -142,7 +142,8 @@ public class FXMLPantallaActualizarArticuloController implements Initializable {
         ServiciosArticulos sa = new ServiciosArticulos();
         if (fxComboBoxArticulo.getSelectionModel().getSelectedItem() != null) {
             if (!fxNombre.getText().equals("") && fxComboBoxCategoria.getSelectionModel().getSelectedItem() != null
-                    && fxComboBoxUbicacion.getSelectionModel().getSelectedItem() != null && fxComboBoxResponsable.getSelectionModel().getSelectedItem() != null && !fxDescripcion.getText().equals("")) {
+                    && fxComboBoxUbicacion.getSelectionModel().getSelectedItem() != null && fxComboBoxResponsable.getSelectionModel().getSelectedItem() != null 
+                    && !fxDescripcion.getText().equals("")) {
                 Articulo a = (Articulo) fxComboBoxArticulo.getSelectionModel().getSelectedItem();
                 a.setDescripcion(fxDescripcion.getText());
                 a.setNombre(fxNombre.getText());
@@ -154,9 +155,20 @@ public class FXMLPantallaActualizarArticuloController implements Initializable {
                     alertError.setAlertType(Alert.AlertType.INFORMATION);
                     alertError.setContentText("Actualizado con exito");
                     alertError.showAndWait();
+                    limpiarCampos();
                 } else {
-                    alertError.setContentText("No se ha podido actualizar");
-                    alertError.showAndWait();
+                    switch (num) {
+                        case -1:
+                            alertError.setContentText("Ha ocurrido un error en BBDD");
+                            alertError.showAndWait();
+                            break;
+                        case -2:
+                            alertError.setContentText("Los datos que quiere introducir en este artículo ya existen en la BBDD.");
+                            alertError.showAndWait();
+                            break;
+                        default:
+                            throw new AssertionError();
+                    }
                 }
             } else {
                 alertError.setContentText("Rellene todos los campos");

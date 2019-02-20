@@ -27,6 +27,13 @@ public class Articulo {
 
     }
 
+    public Articulo(String nombre, int id_categoria, String descripcion, Date date) {
+        this.nombre = nombre;
+        this.id_categoria = id_categoria;
+        this.descripcion = descripcion;
+        fecha_de_alta = date;
+    }
+
     public Articulo(int id_objeto, String nombre, String imagenes, String descripcion, int ubicacion, Date fecha_de_alta, int id_responsable, int id_categoria) {
         this.id_articulo = id_objeto;
         this.nombre = nombre;

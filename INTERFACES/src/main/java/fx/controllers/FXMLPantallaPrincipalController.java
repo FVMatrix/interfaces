@@ -88,7 +88,7 @@ public class FXMLPantallaPrincipalController implements Initializable {
     private FXMLPantallaAñadirEmpleadoController controllerAñadirEmpleado;
 
     private AnchorPane pantallaAñadirCategoria;
-    private FXMLPantallaAñadirCategoriaController controllerAñadirCategoria;
+    private FXMLPantallaGestionarCategoriaController controllerAñadirCategoria;
 
     private AnchorPane pantallaBorrarArticulo;
     private FXMLPantallaBorrarArticuloController controllerBorrarArticulo;
@@ -197,10 +197,10 @@ public class FXMLPantallaPrincipalController implements Initializable {
         }
     }
 
-    private void preCargaAñadirCategoria() {
+    private void preCargaGestionarCategoria() {
         try {
             FXMLLoader loaderMenu = new FXMLLoader(
-                    getClass().getResource("/fxml/FXMLPantallaAñadirCategoria.fxml"));
+                    getClass().getResource("/fxml/FXMLPantallaGestionarCategoria.fxml"));
             pantallaAñadirCategoria = loaderMenu.load();
             controllerAñadirCategoria = loaderMenu.getController();
             controllerAñadirCategoria.setInicio(this);
@@ -288,7 +288,7 @@ public class FXMLPantallaPrincipalController implements Initializable {
     }
 
     @FXML
-    public void cargarPantallaAñadirCategoria() {
+    public void cargarPantallaGestionarCategoria() {
         controllerAñadirCategoria.cargar();
         fxRoot.setCenter(pantallaAñadirCategoria);
     }
@@ -358,7 +358,7 @@ public class FXMLPantallaPrincipalController implements Initializable {
         preCargaActualizarArticulo(); 
         preCargaActualizarEmpleado();
         preCargaAñadirArticulo();
-        preCargaAñadirCategoria();
+        preCargaGestionarCategoria();
         preCargaAñadirEmpleado();
         preCargaBorrarArticulo();    
         preCargaBorrarEmpleado();
