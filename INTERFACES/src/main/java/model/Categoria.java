@@ -51,7 +51,7 @@ public class Categoria {
 
     @Override
     public String toString() {
-        return "Categoria" + nombre + " descripcion: " + descripcion;
+        return "Categoria " + nombre + " descripcion: " + descripcion;
     }
 
     public String toStringConTodo() {

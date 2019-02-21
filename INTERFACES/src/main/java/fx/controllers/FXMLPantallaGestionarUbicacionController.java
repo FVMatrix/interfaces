@@ -65,7 +65,7 @@ public class FXMLPantallaGestionarUbicacionController implements Initializable {
         ArrayList<Ubicacion> ubicaciones = (ArrayList<Ubicacion>) sc.cargarTodasLasUbicaciones();
         fxUbicacionActualizar.getItems().addAll(ubicaciones);
         fxUbicacionBorrar.getItems().addAll(ubicaciones);
-         fxUbicacionBorrar.getSelectionModel().clearSelection();
+        fxUbicacionBorrar.getSelectionModel().clearSelection();
         fxUbicacionActualizar.getSelectionModel().clearSelection();
 
     }
@@ -202,7 +202,7 @@ public class FXMLPantallaGestionarUbicacionController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+       alertError = new Alert(Alert.AlertType.ERROR);
     }    
     
 }

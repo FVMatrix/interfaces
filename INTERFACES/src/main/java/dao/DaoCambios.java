@@ -32,7 +32,7 @@ public class DaoCambios {
             lista = qr.query(con, "select * FROM cambios where id_articulo = ?", handler, art.getId_articulo());
 
         } catch (Exception ex) {
-            Logger.getLogger(DaoCambios.class.getName()).log(Level.SEVERE, null, ex);
+           
         } finally {
             db.cerrarConexion(con);
         }

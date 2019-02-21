@@ -146,12 +146,13 @@ public class FXMLPantallaGestionarCategoriaController implements Initializable {
             if (filas > 0) {
                 Alert aa = new Alert(Alert.AlertType.INFORMATION, "Categoria actualizada", ButtonType.CLOSE);
                 aa.showAndWait();
-                fxNombreNuevo.clear();
-                fxDescripcionNuevo.clear();
+                
                 fxCategoria2.getItems().remove(c);
                 fxCategoria.getItems().remove(c);
                 fxCategoria2.getItems().add(c);
                 fxCategoria.getItems().add(c);
+                fxNombreNuevo.clear();
+                fxDescripcionNuevo.clear();
                 fxCategoria.getSelectionModel().clearSelection();
 
             } else {

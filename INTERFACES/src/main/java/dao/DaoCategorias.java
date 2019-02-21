@@ -35,7 +35,7 @@ public class DaoCategorias {
             lista = qr.query(con, "select * FROM categorias", handler);
 
         } catch (Exception ex) {
-            Logger.getLogger(DaoCategorias.class.getName()).log(Level.SEVERE, null, ex);
+          
         } finally {
             db.cerrarConexion(con);
         }
@@ -55,10 +55,10 @@ public class DaoCategorias {
                     cat.getNombre(), cat.getDescripcion());
             filas = id.intValue();
         } catch (Exception ex) {
-            if (ex.getMessage().contains("UNIQUE KEY constraint")) {
+            if (ex.getMessage().contains("UNIQUE")) {
                 filas = -2;
             }
-            Logger.getLogger(DaoCategorias.class.getName()).log(Level.SEVERE, null, ex);
+          
         } finally {
             db.cerrarConexion(con);
         }
@@ -80,9 +80,9 @@ public class DaoCategorias {
 
         } catch (SQLException ex) {
             filas = -2;
-            Logger.getLogger(DaoCategorias.class.getName()).log(Level.SEVERE, null, ex);
+           // Logger.getLogger(DaoCategorias.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
-            Logger.getLogger(DaoCategorias.class.getName()).log(Level.SEVERE, null, ex);
+          
         } finally {
             db.cerrarConexion(con);
         }
@@ -100,7 +100,7 @@ public class DaoCategorias {
             ResultSetHandler handler = new BeanHandler<>(Categoria.class);
             cat = (Categoria) qr.query(con, "select * FROM categorias where id_categoria = ?", handler, id);
         } catch (Exception ex) {
-            Logger.getLogger(DaoCategorias.class.getName()).log(Level.SEVERE, null, ex);
+          
         } finally {
             db.cerrarConexion(con);
         }
@@ -122,10 +122,10 @@ public class DaoCategorias {
                     cat.getNombre(), cat.getDescripcion(), cat.getId_categoria());
 
         } catch (Exception ex) {
-            if (ex.getMessage().contains("UNIQUE KEY constraint")) {
+            if (ex.getMessage().contains("UNIQUE")) {
                 filas = -2;
             }
-            Logger.getLogger(DaoCategorias.class.getName()).log(Level.SEVERE, null, ex);
+          
         } finally {
             db.cerrarConexion(con);
         }

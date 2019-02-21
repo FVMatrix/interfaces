@@ -39,10 +39,10 @@ public class DaoEmpleados {
             emp.setId_empleado(filas);
         } catch (Exception ex) {
             //SI EL DNI YA EXISTE EN LA BBDD, HAZSELO SABER AL USUARIO
-            if (ex.getMessage().contains("UNIQUE KEY constraint")) {
+            if (ex.getMessage().contains("UNIQUE")) {
                 filas = -2;
             }
-            Logger.getLogger(DaoEmpleados.class.getName()).log(Level.SEVERE, null, ex);
+            
         } finally {
             db.cerrarConexion(con);
         }
@@ -61,7 +61,7 @@ public class DaoEmpleados {
             lista = qr.query(con, "select * FROM empleados", handler);
 
         } catch (Exception ex) {
-            Logger.getLogger(DaoEmpleados.class.getName()).log(Level.SEVERE, null, ex);
+           
         } finally {
             db.cerrarConexion(con);
         }
@@ -89,15 +89,18 @@ public class DaoEmpleados {
             con.commit();
 
         } catch (Exception ex) {
+             filas = -2;
             try {
                 if (con != null) {
                     con.rollback();
+                     filas = -1;
                 }
             } catch (SQLException ex1) {
-                Logger.getLogger(DaoEmpleados.class.getName()).log(Level.SEVERE, null, ex1);
+                
                 filas = -2;
             }
-            Logger.getLogger(DaoEmpleados.class.getName()).log(Level.SEVERE, null, ex);
+            
+           
         } finally {
             db.cerrarConexion(con);
         }
@@ -115,7 +118,7 @@ public class DaoEmpleados {
             ResultSetHandler handler = new BeanHandler<>(Empleado.class);
             emple = (Empleado) qr.query(con, "select * FROM empleados where id_empleado = ?", handler, emp.getId_empleado());
         } catch (Exception ex) {
-            Logger.getLogger(DaoEmpleados.class.getName()).log(Level.SEVERE, null, ex);
+           
         } finally {
             db.cerrarConexion(con);
         }
@@ -133,7 +136,7 @@ public class DaoEmpleados {
             ResultSetHandler handler = new BeanHandler<>(Empleado.class);
             emple = (Empleado) qr.query(con, "select * FROM empleados where dni = ?", handler, emp.getDni());
         } catch (Exception ex) {
-            Logger.getLogger(DaoEmpleados.class.getName()).log(Level.SEVERE, null, ex);
+           
         } finally {
             db.cerrarConexion(con);
         }
@@ -155,10 +158,10 @@ public class DaoEmpleados {
                     emp.getNombre(), emp.getApellido(), emp.getTelefono(), emp.getUbicacion(), emp.getPass(), emp.getEmail(), emp.getDni(), emp.getId_empleado());
 
         } catch (Exception ex) {
-            if (ex.getMessage().contains("UNIQUE KEY constraint")) {
+            if (ex.getMessage().contains("UNIQUE")) {
                 filas = -2;
             }
-            Logger.getLogger(DaoArticulos.class.getName()).log(Level.SEVERE, null, ex);
+          
         } finally {
             db.cerrarConexion(con);
         }

@@ -34,7 +34,7 @@ public class DaoUbicacion {
             lista = qr.query(con, "select * FROM ubicaciones", handler);
 
         } catch (Exception ex) {
-            Logger.getLogger(DaoUbicacion.class.getName()).log(Level.SEVERE, null, ex);
+          
         } finally {
             db.cerrarConexion(con);
         }
@@ -55,10 +55,10 @@ public class DaoUbicacion {
             filas = id.intValue();
             u.setIdubicaciones(filas);
         } catch (Exception ex) {
-            if (ex.getMessage().contains("UNIQUE KEY constraint")) {
+            if (ex.getMessage().contains("UNIQUE")) {
                 filas = -2;
             }
-            Logger.getLogger(DaoUbicacion.class.getName()).log(Level.SEVERE, null, ex);
+            
         } finally {
             db.cerrarConexion(con);
         }
@@ -80,9 +80,9 @@ public class DaoUbicacion {
 
         } catch (SQLException ex) {
             filas = -2;
-            Logger.getLogger(DaoUbicacion.class.getName()).log(Level.SEVERE, null, ex);
+           // Logger.getLogger(DaoCategorias.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
-            Logger.getLogger(DaoUbicacion.class.getName()).log(Level.SEVERE, null, ex);
+          
         } finally {
             db.cerrarConexion(con);
         }
@@ -100,7 +100,7 @@ public class DaoUbicacion {
             ResultSetHandler handler = new BeanHandler<>(Ubicacion.class);
             cat = (Ubicacion) qr.query(con, "select * FROM ubicaciones where idubicaciones = ?", handler, id);
         } catch (Exception ex) {
-            Logger.getLogger(DaoUbicacion.class.getName()).log(Level.SEVERE, null, ex);
+          
         } finally {
             db.cerrarConexion(con);
         }
@@ -122,10 +122,10 @@ public class DaoUbicacion {
                     u.getNombre_ubicacion(),u.getDescripcion(), u.getIdubicaciones());
 
         } catch (Exception ex) {
-            if (ex.getMessage().contains("UNIQUE KEY constraint")) {
+            if (ex.getMessage().contains("UNIQUE")) {
                 filas = -2;
             }
-            Logger.getLogger(DaoUbicacion.class.getName()).log(Level.SEVERE, null, ex);
+            
         } finally {
             db.cerrarConexion(con);
         }

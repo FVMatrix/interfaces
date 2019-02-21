@@ -56,15 +56,15 @@ public class DaoArticulos {
                     con.rollback();
                 }
             } catch (SQLException ex1) {
-                if (ex.getMessage().contains("UNIQUE KEY constraint")) {
+                if (ex.getMessage().contains("UNIQUE")) {
                     filas = -2;
                 }
-                Logger.getLogger(DaoArticulos.class.getName()).log(Level.SEVERE, null, ex1);
+              
             }
-            if (ex.getMessage().contains("UNIQUE KEY constraint")) {
+            if (ex.getMessage().contains("UNIQUE")) {
                 filas = -2;
             }
-            Logger.getLogger(DaoArticulos.class.getName()).log(Level.SEVERE, null, ex);
+           
         } finally {
             db.cerrarConexion(con);
         }
@@ -83,7 +83,7 @@ public class DaoArticulos {
             lista = qr.query(con, "select * FROM articulos", handler);
 
         } catch (Exception ex) {
-            Logger.getLogger(DaoArticulos.class.getName()).log(Level.SEVERE, null, ex);
+          
         } finally {
             db.cerrarConexion(con);
         }
@@ -122,9 +122,9 @@ public class DaoArticulos {
                     con.rollback();
                 }
             } catch (SQLException ex1) {
-                Logger.getLogger(DaoArticulos.class.getName()).log(Level.SEVERE, null, ex1);
+              
             }
-            Logger.getLogger(DaoArticulos.class.getName()).log(Level.SEVERE, null, ex);
+          
         } finally {
             db.cerrarConexion(con);
         }
@@ -142,7 +142,7 @@ public class DaoArticulos {
             ResultSetHandler handler = new BeanHandler<>(Articulo.class);
             arti = (Articulo) qr.query(con, "select * FROM articulos where id_articulo = ?", handler, art.getId_articulo());
         } catch (Exception ex) {
-            Logger.getLogger(DaoArticulos.class.getName()).log(Level.SEVERE, null, ex);
+          
         } finally {
             db.cerrarConexion(con);
         }
@@ -176,15 +176,15 @@ public class DaoArticulos {
                 }
 
             } catch (SQLException ex1) {
-                if (ex.getMessage().contains("UNIQUE KEY constraint")) {
+                if (ex.getMessage().contains("UNIQUE")) {
                     filas = -2;
                 }
-                Logger.getLogger(DaoArticulos.class.getName()).log(Level.SEVERE, null, ex1);
+               
             }
-            if (ex.getMessage().contains("UNIQUE KEY constraint")) {
+            if (ex.getMessage().contains("UNIQUE")) {
                 filas = -2;
             }
-            Logger.getLogger(DaoArticulos.class.getName()).log(Level.SEVERE, null, ex);
+          
         } finally {
             db.cerrarConexion(con);
         }

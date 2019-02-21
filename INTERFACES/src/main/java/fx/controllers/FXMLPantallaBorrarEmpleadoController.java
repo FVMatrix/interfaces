@@ -91,15 +91,16 @@ public class FXMLPantallaBorrarEmpleadoController implements Initializable {
                 } else {
                     switch (num) {
                         case -1:
-                            alert.setContentText("Ha ocurrido un error al intentar borrar, pruebe más tarde.");
+                           
+                             alert.setContentText("Este empleado tiene información relacionada, por tanto, no se puede borrar.");
                             alert.showAndWait();
                             break;
                         case -2:
-                            alert.setContentText("Este empleado tiene información relacionada, por tanto, no se puede borrar.");
+                            alert.setContentText("Ha ocurrido un error al intentar borrar, pruebe más tarde.");
                             alert.showAndWait();
                             break;
-                        default:
-                            throw new AssertionError();
+                        
+                            
                     }
                 }
             } else {
