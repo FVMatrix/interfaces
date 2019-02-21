@@ -42,6 +42,7 @@ public class FXMLPantallaVerArticulosController implements Initializable {
     @FXML
     private ImageView fxImageView;
 
+
     public void cargarComboBox() {
         servicios.ServiciosArticulos sa = new ServiciosArticulos();
         fxComboBox.getItems().clear();
@@ -74,13 +75,15 @@ public class FXMLPantallaVerArticulosController implements Initializable {
     }
 
     public void cargarImageView(Articulo a) {
+        if (null != a) {
+            imagenesDeArticulo = a.getImagenes();
+            imagenesDeprueba = "monitorAcer.jpg;monitorAcerPredator.jpg;monitorSamsung.png;";
+            imagenesSeparadas = imagenesDeprueba.split(";");
+            Image image = new Image(this.getClass().getResource("/images/" + imagenesSeparadas[0]).toString());
+            setImagenActual(imagenesSeparadas[0]);
+            fxImageView.setImage((image));
+        }
 
-        imagenesDeArticulo = a.getImagenes();
-        imagenesDeprueba = "monitorAcer.jpg;monitorAcerPredator.jpg;monitorSamsung.png;";
-        imagenesSeparadas = imagenesDeprueba.split(";");
-        Image image = new Image(this.getClass().getResource("/images/" + imagenesSeparadas[0]).toString());
-        setImagenActual(imagenesSeparadas[0]);
-        fxImageView.setImage((image));
     }
 
     public int devuelvemeLaPosicionDeLaImagenActual() {
