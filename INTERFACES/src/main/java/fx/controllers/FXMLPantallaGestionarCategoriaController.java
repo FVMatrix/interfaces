@@ -79,6 +79,7 @@ public class FXMLPantallaGestionarCategoriaController implements Initializable {
 
     public void cargarTablaBorrar() {
         fxTablaBorrar.getItems().clear();
+        fxTablaBorrar.getColumns().clear();
 
         TableColumn nombre = new TableColumn("Nombre");
         TableColumn descripcion = new TableColumn("Descripcion");
@@ -146,7 +147,7 @@ public class FXMLPantallaGestionarCategoriaController implements Initializable {
             if (filas > 0) {
                 Alert aa = new Alert(Alert.AlertType.INFORMATION, "Categoria actualizada", ButtonType.CLOSE);
                 aa.showAndWait();
-                
+
                 fxCategoria2.getItems().remove(c);
                 fxCategoria.getItems().remove(c);
                 fxCategoria2.getItems().add(c);
@@ -207,6 +208,7 @@ public class FXMLPantallaGestionarCategoriaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         alertError = new Alert(Alert.AlertType.ERROR);
+
     }
 
 }

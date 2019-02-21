@@ -26,6 +26,7 @@ public class FxMain extends Application {
 
         Scene scene = new Scene(root);
 //        scene.getStylesheets().add("css/fxmlScene.css");
+        scene.getStylesheets().add("css/tema.css");
         primaryStage.setTitle("Administración de inventario de Empresa");
         primaryStage.setScene(scene);
         primaryStage.show();

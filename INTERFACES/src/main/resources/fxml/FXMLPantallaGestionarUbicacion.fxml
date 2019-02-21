@@ -7,24 +7,27 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="fx.controllers.FXMLPantallaGestionarUbicacionController">
+<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="900.0" styleClass="background" stylesheets="@../css/tema.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fx.controllers.FXMLPantallaGestionarUbicacionController">
      <children>
-      <Label layoutX="357.0" layoutY="121.0" text="DESCRIPCION" />
-      <ComboBox fx:id="fxUbicacionBorrar" layoutX="61.0" layoutY="452.0" onAction="#cargarTablaBorrar" prefHeight="31.0" prefWidth="196.0" promptText="Seleccione Ubicación" />
-      <ComboBox fx:id="fxUbicacionActualizar" layoutX="21.0" layoutY="266.0" onAction="#cargarActualizar" prefHeight="31.0" prefWidth="196.0" promptText="Seleccione Ubicación" />
-      <Button layoutX="776.0" layoutY="117.0" mnemonicParsing="false" onAction="#añadirUbicacion" text="AÑADIR" />
-      <Button layoutX="763.0" layoutY="282.0" mnemonicParsing="false" onAction="#actualizarUbicacion" text="ACTUALIZAR" />
-      <Button layoutX="775.0" layoutY="471.0" mnemonicParsing="false" onAction="#borrarUbicacion" text="BORRAR" />
-      <Label layoutX="80.0" layoutY="119.0" text="NOMBRE" />
-      <TextField fx:id="fxNombre" layoutX="159.0" layoutY="115.0" />
-      <TextArea fx:id="fxDescripcion" layoutX="471.0" layoutY="82.0" prefHeight="96.0" prefWidth="253.0" />
-      <TextField fx:id="fxNombreNuevo" layoutX="257.0" layoutY="269.0" promptText="Nombre" />
-      <TextArea fx:id="fxDescripcionNuevo" layoutX="471.0" layoutY="237.0" prefHeight="96.0" prefWidth="253.0" promptText="Descripción" />
-      <TableView fx:id="fxTablaBorrar" layoutX="303.0" layoutY="417.0" prefHeight="153.0" prefWidth="421.0" />
-      <Label layoutX="298.0" layoutY="37.0" text="Gestionar Ubicaciones">
+      <Label layoutX="357.0" layoutY="132.0" text="DESCRIPCION" />
+      <ComboBox id="comboo" fx:id="fxUbicacionBorrar" layoutX="32.0" layoutY="502.0" onAction="#cargarTablaBorrar" prefHeight="37.0" prefWidth="206.0" promptText="Seleccione Ubicación" />
+      <ComboBox id="comboo" fx:id="fxUbicacionActualizar" layoutX="32.0" layoutY="285.0" onAction="#cargarActualizar" prefHeight="37.0" prefWidth="206.0" promptText="Seleccione Ubicación" />
+      <Button layoutX="732.0" layoutY="126.0" mnemonicParsing="false" onAction="#añadirUbicacion" prefHeight="33.0" prefWidth="139.0" text="AÑADIR" />
+      <Button layoutX="732.0" layoutY="287.0" mnemonicParsing="false" onAction="#actualizarUbicacion" text="ACTUALIZAR" />
+      <Button layoutX="732.0" layoutY="504.0" mnemonicParsing="false" onAction="#borrarUbicacion" prefHeight="33.0" prefWidth="139.0" text="BORRAR" />
+      <Label layoutX="40.0" layoutY="132.0" text="NOMBRE" />
+      <TextField fx:id="fxNombre" layoutX="128.0" layoutY="124.0" promptText="Nombre" />
+      <TextArea fx:id="fxDescripcion" layoutX="477.0" layoutY="84.0" prefHeight="117.0" prefWidth="241.0" promptText="Descripción" stylesheets="@../css/tema.css" />
+      <TextField fx:id="fxNombreNuevo" layoutX="267.0" layoutY="285.0" prefHeight="37.0" prefWidth="196.0" promptText="Nombre" />
+      <TextArea fx:id="fxDescripcionNuevo" layoutX="480.0" layoutY="245.0" prefHeight="117.0" prefWidth="235.0" promptText="Descripción" styleClass="text-area" stylesheets="@../css/tema.css" />
+      <TableView fx:id="fxTablaBorrar" layoutX="264.0" layoutY="444.0" prefHeight="153.0" prefWidth="450.0" />
+      <Label id="labelpropio" layoutX="347.0" layoutY="28.0" prefHeight="33.0" prefWidth="206.0" text="Gestionar Ubicaciones">
         
       </Label>
+      <Line endX="437.5" layoutX="463.0" layoutY="392.0" startX="-463.0" stroke="WHITE" />
+      <Line endX="437.0" layoutX="463.0" layoutY="223.0" startX="-463.0" stroke="#fcf9f9" />
       
    </children>
 </AnchorPane>

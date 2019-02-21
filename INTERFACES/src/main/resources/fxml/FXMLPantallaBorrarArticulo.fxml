@@ -7,16 +7,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="pantallaBorrarArticulo" prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fx.controllers.FXMLPantallaBorrarArticuloController">
+<AnchorPane id="AnchorPane" fx:id="pantallaBorrarArticulo" prefHeight="650.0" prefWidth="900.0" styleClass="background" stylesheets="@../css/tema.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fx.controllers.FXMLPantallaBorrarArticuloController">
      <children>
-      <Label layoutX="370.0" layoutY="71.0" text="Borrar artículos">
+      <Label id="labelpropio" layoutX="382.0" layoutY="58.0" text="Borrar artículos">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="131.0" layoutY="184.0" text="Seleccione el artículo que desea borrar" />
-      <ComboBox fx:id="fxComboBox" layoutX="421.0" layoutY="179.0" onAction="#cargarTabla" prefHeight="31.0" prefWidth="198.0" />
+      <Label id="labelpropio" layoutX="101.0" layoutY="193.0" text="Seleccione el artículo que desea borrar" />
+      <ComboBox id="comboo" fx:id="fxComboBox" layoutX="562.0" layoutY="191.0" onAction="#cargarTabla" prefHeight="33.0" prefWidth="239.0" promptText="Seleccione el artículo" />
       <TableView fx:id="fxTableView" layoutX="101.0" layoutY="271.0" prefHeight="198.0" prefWidth="700.0" />
-      <Button layoutX="364.0" layoutY="533.0" mnemonicParsing="false" onAction="#borrarArticulo" prefHeight="59.0" prefWidth="174.0" text="BORRAR" />
+      <Button layoutX="365.0" layoutY="533.0" mnemonicParsing="false" onAction="#borrarArticulo" prefHeight="59.0" prefWidth="174.0" text="BORRAR" />
    </children>
 </AnchorPane>

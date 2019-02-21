@@ -8,28 +8,23 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="pantallaAñadirCategoria" prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fx.controllers.FXMLPantallaGestionarCategoriaController">
+<AnchorPane id="AnchorPane" fx:id="pantallaAñadirCategoria" prefHeight="650.0" prefWidth="900.0" styleClass="background" stylesheets="@../css/tema.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fx.controllers.FXMLPantallaGestionarCategoriaController">
    <children>
-      <Label layoutX="320.0" layoutY="120.0" text="DESCRIPCION" />
-      <ComboBox fx:id="fxCategoria2" layoutX="61.0" layoutY="452.0" onAction="#cargarTablaBorrar" prefHeight="31.0" prefWidth="196.0" promptText="Seleccione categoría" />
-      <ComboBox fx:id="fxCategoria" layoutX="61.0" layoutY="269.0" onAction="#cargarActualizar" prefHeight="31.0" prefWidth="196.0" promptText="Seleccione categoría" />
-      <Button layoutX="793.0" layoutY="115.0" mnemonicParsing="false" onAction="#añadirCategoria" text="AÑADIR" />
-      <Button layoutX="777.0" layoutY="276.0" mnemonicParsing="false" onAction="#actualizarCategoria" text="ACTUALIZAR" />
-      <Button layoutX="792.0" layoutY="468.0" mnemonicParsing="false" onAction="#borrarCategoria" text="BORRAR" />
-      <Label layoutX="35.0" layoutY="120.0" text="NOMBRE" />
-      <TextField fx:id="fxNombre" layoutX="109.0" layoutY="115.0" />
-      <TextArea fx:id="fxDescripcion" layoutX="426.0" layoutY="83.0" prefHeight="96.0" prefWidth="253.0" />
-      <TextField fx:id="fxNombreNuevo" layoutX="303.0" layoutY="269.0" />
-      <TextArea fx:id="fxDescripcionNuevo" layoutX="513.0" layoutY="237.0" prefHeight="96.0" prefWidth="253.0" />
-      <TableView fx:id="fxTablaBorrar" layoutX="303.0" layoutY="407.0" prefHeight="153.0" prefWidth="421.0" />
-      <Label layoutX="298.0" layoutY="37.0" text="Gestionar una Categoría">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <Line endX="791.0" layoutX="109.0" layoutY="215.0" startX="-109.0" />
-      <Line endX="791.5" layoutX="109.0" layoutY="377.0" startX="-109.0" />
+      <Label layoutX="372.0" layoutY="124.0" text="DESCRIPCION" />
+      <ComboBox id="comboo" fx:id="fxCategoria2" layoutX="44.0" layoutY="497.0" onAction="#cargarTablaBorrar" prefHeight="31.0" prefWidth="196.0" promptText="Seleccione categoría" />
+      <ComboBox id="comboo" fx:id="fxCategoria" layoutX="44.0" layoutY="286.0" onAction="#cargarActualizar" prefHeight="31.0" prefWidth="196.0" promptText="Seleccione categoría" styleClass="combo-box" stylesheets="@../css/tema.css" />
+      <Button layoutX="760.0" layoutY="115.0" mnemonicParsing="false" onAction="#añadirCategoria" prefHeight="33.0" prefWidth="139.0" text="AÑADIR" />
+      <Button layoutX="764.0" layoutY="288.0" mnemonicParsing="false" onAction="#actualizarCategoria" prefHeight="33.0" prefWidth="139.0" text="ACTUALIZAR" />
+      <Button layoutX="764.0" layoutY="499.0" mnemonicParsing="false" onAction="#borrarCategoria" prefHeight="33.0" prefWidth="139.0" text="BORRAR" />
+      <Label layoutX="44.0" layoutY="121.0" text="NOMBRE" />
+      <TextField fx:id="fxNombre" layoutX="137.0" layoutY="113.0" prefHeight="37.0" prefWidth="206.0" promptText="Nombre" />
+      <TextArea fx:id="fxDescripcion" layoutX="490.0" layoutY="80.0" prefHeight="108.0" prefWidth="253.0" promptText="Descripción" />
+      <TextField fx:id="fxNombreNuevo" layoutX="269.0" layoutY="286.0" promptText="Nombre" />
+      <TextArea fx:id="fxDescripcionNuevo" layoutX="490.0" layoutY="252.0" prefHeight="108.0" prefWidth="253.0" promptText="Descripcón" />
+      <TableView fx:id="fxTablaBorrar" layoutX="269.0" layoutY="439.0" prefHeight="153.0" prefWidth="474.0" />
+      <Line endX="807.0" layoutX="109.0" layoutY="215.0" startX="-109.0" stroke="WHITE" />
+      <Line endX="798.0" layoutX="110.0" layoutY="398.0" startX="-109.0" stroke="WHITE" />
+      <Label id="labelpropio" layoutX="349.0" layoutY="24.0" prefHeight="37.0" prefWidth="181.0" text="Gestionar Categoría" />
    </children>
 </AnchorPane>

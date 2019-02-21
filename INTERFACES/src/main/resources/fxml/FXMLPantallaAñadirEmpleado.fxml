@@ -8,31 +8,31 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="pantallaAñadirEmpleado" prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fx.controllers.FXMLPantallaAñadirEmpleadoController">
+<AnchorPane id="AnchorPane" fx:id="pantallaAñadirEmpleado" prefHeight="650.0" prefWidth="900.0" styleClass="background" stylesheets="@../css/tema.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fx.controllers.FXMLPantallaAñadirEmpleadoController">
    <children>
-      <Label layoutX="84.0" layoutY="199.0" text="Nombre" />
-      <Label layoutX="450.0" layoutY="199.0" prefHeight="0.0" prefWidth="62.0" text="Apellidos" />
-      <Label layoutX="82.0" layoutY="278.0" text="Teléfono" />
-      <Label layoutX="448.0" layoutY="278.0" text="Ubicacion" />
-      <Label layoutX="403.0" layoutY="368.0" text="Confirme la Contraseña" />
+      <Label layoutX="87.0" layoutY="210.0" text="Nombre" />
+      <Label layoutX="477.0" layoutY="202.0" prefHeight="0.0" prefWidth="62.0" text="Apellidos" />
+      <Label layoutX="86.0" layoutY="289.0" text="Teléfono" />
+      <Label layoutX="475.0" layoutY="278.0" text="Ubicacion" />
+      <Label layoutX="415.0" layoutY="371.0" text="Confirme la Contraseña" />
       <Label layoutX="77.0" layoutY="368.0" text="Contraseña" />
       <Label layoutX="93.0" layoutY="449.0" prefHeight="21.0" prefWidth="36.0" text="Email" />
-      <Label layoutX="98.0" layoutY="121.0" text="DNI" />
-      <TextField fx:id="fxDni" layoutX="185.0" layoutY="116.0" />
-      <TextField fx:id="fxNombre" layoutX="185.0" layoutY="194.0" />
-      <TextField fx:id="fxApellidos" layoutX="571.0" layoutY="194.0" />
-      <TextField fx:id="fxTelefono" layoutX="185.0" layoutY="273.0" />
-      <ComboBox fx:id="fxUbicacion" layoutX="571.0" layoutY="273.0" prefHeight="31.0" prefWidth="187.0" />
-      <PasswordField fx:id="fxContraseña" layoutX="185.0" layoutY="363.0" />
-      <PasswordField fx:id="fxContraseña2" layoutX="571.0" layoutY="363.0" />
-      <TextField fx:id="fxEmail" layoutX="185.0" layoutY="444.0" />
-      <Button layoutX="408.0" layoutY="514.0" mnemonicParsing="false" onAction="#añadirEmpleado" prefHeight="58.0" prefWidth="146.0" text="AÑADIR" />
-      <Label layoutX="304.0" layoutY="38.0" text="Añadir un nuevo empleado">
+      <Label layoutX="102.0" layoutY="132.0" text="DNI" />
+      <TextField fx:id="fxDni" layoutX="185.0" layoutY="124.0" promptText="DNI" />
+      <TextField fx:id="fxNombre" layoutX="185.0" layoutY="202.0" promptText="Nombre" />
+      <TextField fx:id="fxApellidos" layoutX="587.0" layoutY="194.0" promptText="Apellidos" styleClass="text-field" stylesheets="@../css/tema.css" />
+      <TextField fx:id="fxTelefono" layoutX="185.0" layoutY="281.0" promptText="Teléfono" />
+      <ComboBox id="comboo" fx:id="fxUbicacion" layoutX="587.0" layoutY="273.0" prefHeight="37.0" prefWidth="206.0" promptText="Seleccione ubicación" styleClass="combo-box" stylesheets="@../css/tema.css" />
+      <PasswordField fx:id="fxContraseña" layoutX="185.0" layoutY="363.0" promptText="Contraseña" />
+      <PasswordField fx:id="fxContraseña2" layoutX="587.0" layoutY="363.0" promptText="Repite contraseña" />
+      <TextField fx:id="fxEmail" layoutX="185.0" layoutY="444.0" promptText="Email" />
+      <Button layoutX="377.0" layoutY="529.0" mnemonicParsing="false" onAction="#añadirEmpleado" prefHeight="58.0" prefWidth="146.0" text="AÑADIR" />
+      <Label id="labelpropio" layoutX="325.0" layoutY="41.0" text="Añadir un nuevo empleado">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <ComboBox fx:id="fxComboBoxTipoEmpleado" layoutX="571.0" layoutY="431.0" prefHeight="31.0" prefWidth="187.0" />
-      <Label layoutX="433.0" layoutY="436.0" text="Tipo de empleado" />
+      <ComboBox id="comboo" fx:id="fxComboBoxTipoEmpleado" layoutX="587.0" layoutY="444.0" prefHeight="37.0" prefWidth="206.0" promptText="Seleccione el tipo" styleClass="combo-box" stylesheets="@../css/tema.css" />
+      <Label layoutX="439.0" layoutY="449.0" text="Tipo de empleado" />
    </children>
 </AnchorPane>
