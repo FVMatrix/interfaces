@@ -17,8 +17,8 @@
       </Label>
       <Label id="labelobligatorio" layoutX="66.0" layoutY="171.0" text="Nombre*" textFill="#cd0c0c" />
       <Label id="labelobligatorio" layoutX="456.0" layoutY="168.0" text="Categoría*" textFill="#e80505" />
-      <Label layoutX="64.0" layoutY="295.0" text="Ubicación*" />
-      <Label layoutX="410.0" layoutY="295.0" text="Responsable del artículo*" />
+      <Label id="labelobligatorio" layoutX="64.0" layoutY="295.0" text="Ubicación*" />
+      <Label id="labelobligatorio" layoutX="410.0" layoutY="295.0" text="Responsable del artículo*" />
       <Label layoutX="69.0" layoutY="411.0" text="Agregar imágenes" />
       <Label id="labelobligatorio" layoutX="449.0" layoutY="411.0" text="Descripción*" textFill="#e80404" />
       <Button layoutX="369.0" layoutY="526.0" mnemonicParsing="false" onAction="#añadirArticulo" prefHeight="53.0" prefWidth="121.0" text="AÑADIR" />
