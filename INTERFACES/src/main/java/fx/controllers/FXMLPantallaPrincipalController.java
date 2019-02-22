@@ -283,6 +283,7 @@ public class FXMLPantallaPrincipalController implements Initializable {
 
     @FXML
     public void cargarPantallaAñadirEmpleado() {
+        controllerAñadirEmpleado.limpiarValores();
         controllerAñadirEmpleado.cargarComboBoxUbicacion();
         fxRoot.setCenter(pantallaAñadirEmpleado);
     }

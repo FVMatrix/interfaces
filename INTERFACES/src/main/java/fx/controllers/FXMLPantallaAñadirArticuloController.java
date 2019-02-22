@@ -97,23 +97,17 @@ public class FXMLPantallaAñadirArticuloController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(null);
         alert.setHeaderText(null);
-        if (!fxNombre.getText().equals("") && fxComboBoxCategoria.getSelectionModel().getSelectedItem() != null && !fxTextAreaDescripcion.getText().equals("")) {
+        if (!fxNombre.getText().equals("") && fxComboBoxCategoria.getSelectionModel().getSelectedItem() != null && !fxTextAreaDescripcion.getText().equals("")
+                && null != fxComboBoxUbicacion.getSelectionModel().getSelectedItem() && null != fxComboBoxResponsable.getSelectionModel().getSelectedItem()) {
 
             Categoria cat = (Categoria) fxComboBoxCategoria.getSelectionModel().getSelectedItem();
-            Articulo articuloAñadir = new Articulo(fxNombre.getText(), cat.getId_categoria(), fxTextAreaDescripcion.getText(),Date.valueOf(LocalDate.now()));
-            
+            Articulo articuloAñadir = new Articulo(fxNombre.getText(), cat.getId_categoria(), fxTextAreaDescripcion.getText(), Date.valueOf(LocalDate.now()));
+
             //MISHA AQUI COMPRUEBAS LO DE LAS IMAGENES A TU MANERA
-            
             articuloAñadir.setImagenes("imagenes");
-            
-            
-            
-            if (null != fxComboBoxUbicacion.getSelectionModel().getSelectedItem()) {
-                articuloAñadir.setUbicacion(((Ubicacion) fxComboBoxUbicacion.getSelectionModel().getSelectedItem()).getIdubicaciones());
-            }
-            if (null != fxComboBoxResponsable.getSelectionModel().getSelectedItem()) {
-                articuloAñadir.setId_responsable(((Empleado) fxComboBoxResponsable.getSelectionModel().getSelectedItem()).getId_empleado());
-            }
+
+            articuloAñadir.setUbicacion(((Ubicacion) fxComboBoxUbicacion.getSelectionModel().getSelectedItem()).getIdubicaciones());
+            articuloAñadir.setId_responsable(((Empleado) fxComboBoxResponsable.getSelectionModel().getSelectedItem()).getId_empleado());
 
             int num = sa.añadirArticulo(articuloAñadir);
             if (num > 0) {
@@ -142,8 +136,8 @@ public class FXMLPantallaAñadirArticuloController implements Initializable {
             alert.showAndWait();
         }
     }
-    
-    public void limpiarCampos(){
+
+    public void limpiarCampos() {
         //HOLA SOY UN MÉTODO QUE QUIERE SER RELLENADO
     }
 

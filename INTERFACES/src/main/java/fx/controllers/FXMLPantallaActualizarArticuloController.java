@@ -135,6 +135,10 @@ public class FXMLPantallaActualizarArticuloController implements Initializable {
     public void limpiarCampos() {
         fxNombre.clear();
         fxDescripcion.clear();
+        fxComboBoxResponsable.getSelectionModel().clearSelection();
+        fxComboBoxUbicacion.getSelectionModel().clearSelection();
+        fxComboBoxCategoria.getSelectionModel().clearSelection();
+        fxComboBoxArticulo.getSelectionModel().clearSelection();
     }
 
     @FXML
@@ -142,7 +146,7 @@ public class FXMLPantallaActualizarArticuloController implements Initializable {
         ServiciosArticulos sa = new ServiciosArticulos();
         if (fxComboBoxArticulo.getSelectionModel().getSelectedItem() != null) {
             if (!fxNombre.getText().equals("") && fxComboBoxCategoria.getSelectionModel().getSelectedItem() != null
-                    && fxComboBoxUbicacion.getSelectionModel().getSelectedItem() != null && fxComboBoxResponsable.getSelectionModel().getSelectedItem() != null 
+                    && fxComboBoxUbicacion.getSelectionModel().getSelectedItem() != null && fxComboBoxResponsable.getSelectionModel().getSelectedItem() != null
                     && !fxDescripcion.getText().equals("")) {
                 Articulo a = (Articulo) fxComboBoxArticulo.getSelectionModel().getSelectedItem();
                 a.setDescripcion(fxDescripcion.getText());

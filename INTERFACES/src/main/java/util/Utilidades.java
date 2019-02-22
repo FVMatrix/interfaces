@@ -57,7 +57,10 @@ public class Utilidades {
         String correoConCorchetes = "[" + correo + "]";
         if (correoConCorchetes.equals(Arrays.toString(splitCorreo))) {
             resultado = -1;
+        } else if (splitCorreo[0].equals("")) {
+            resultado = -1;
         } else {
+
             switch (splitCorreo[1]) {
                 case "gmail.com":
                     resultado = 1;
